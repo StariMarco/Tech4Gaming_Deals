@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
 using Tech4Gaming_Deals.Managers;
 using Tech4Gaming_Deals.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,7 +24,19 @@ namespace Tech4Gaming_Deals
             _app = Application.Current as App;
             _app.ShoppingcartPageInstance = (this);
 
+            if (IsInternetMissing())
+            {
+                //  Not Internet connection
+                lblOffline.IsVisible = true;
+                return;
+            }
+
             InitializeProducts();
+        }
+
+        private static bool IsInternetMissing()
+        {
+            return Connectivity.NetworkAccess == NetworkAccess.None || Connectivity.NetworkAccess == NetworkAccess.Local;
         }
 
         private void DisableSelection(object sender, EventArgs e)
@@ -73,6 +86,14 @@ namespace Tech4Gaming_Deals
 
         private void OnRefreshProducts(object sender, EventArgs e)
         {
+            if (IsInternetMissing())
+            {
+                lstCartProducts.EndRefresh();
+                lblOffline.IsVisible = true;
+                return;
+            }
+            lblOffline.IsVisible = false;
+
             InitializeProducts();
             lstCartProducts.EndRefresh();
         }

@@ -21,19 +21,24 @@ namespace Tech4Gaming_Deals
             InitializeComponent();
 
             _app = Application.Current as App;
-            _app.ProductsPageInstance = (this);
+
+            if (IsInternetMissing())
+            {
+                //  Not Internet connection
+                lblOffline.IsVisible = true;
+                activityIndicator.IsVisible = false;
+                btnViewMore.IsVisible = false;
+                return;
+            }
 
             InitializeProducts();
 
             AdaptContentToScreenSize();
+        }
 
-            //ITemplatedItemsView<Cell> productItemsView = lstProducts as ITemplatedItemsView<Cell>;
-
-            //foreach (var viewCell in productItemsView.TemplatedItems)
-            //{
-            //    Console.WriteLine(viewCell);
-            //}
-            //ViewCell firstCell = productItemsView.TemplatedItems[0] as ViewCell;
+        private static bool IsInternetMissing()
+        {
+            return Connectivity.NetworkAccess == NetworkAccess.None || Connectivity.NetworkAccess == NetworkAccess.Local;
         }
 
         private void ActivateSearch(object sender, EventArgs e)
@@ -64,7 +69,6 @@ namespace Tech4Gaming_Deals
             var product = e.Item as Product;
 
             PopupNavigation.Instance.PushAsync((Rg.Plugins.Popup.Pages.PopupPage)new ProductPopupPage(product, _app), true);
-            
         }
 
         #endregion
@@ -170,16 +174,28 @@ namespace Tech4Gaming_Deals
 
         #region Tech4Gaming Api
 
-        private void OnRefreshProducts(object sender, EventArgs e)
+        private async void OnRefreshProducts(object sender, EventArgs e)
         {
-            InitializeProducts();
+            if (IsInternetMissing())
+            {
+                lstProducts.EndRefresh();
+                lblOffline.IsVisible = true;
+                btnViewMore.IsVisible = false;
+                return;
+            }
+            lblOffline.IsVisible = false;
+            btnViewMore.IsVisible = true;
+
+            await _app.FilterProductsAsync();
+            UpdateProductListItemSource();
             lstProducts.EndRefresh();
         }
 
         private async void InitializeProducts()
         {
             await GetProductsAsync();
-
+            activityIndicator.IsVisible = false;
+            btnViewMore.IsVisible = true;
         }
 
         private async Task GetProductsAsync()
@@ -196,6 +212,11 @@ namespace Tech4Gaming_Deals
 
         private void OnViewMoreProductsClicked(object sender, EventArgs e)
         {
+            if (IsInternetMissing())
+                return;
+
+            btnViewMore.IsVisible = false;
+            activityIndicator.IsVisible = true;
             InitializeProducts();
         }
 

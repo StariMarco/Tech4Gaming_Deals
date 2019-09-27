@@ -20,10 +20,11 @@ namespace Tech4Gaming_Deals
         public ObservableCollection<ProductCategory> CategoryList { get; set; }
 
         public ObservableCollection<Product> Products { get; set; }
-        public ProductsPage ProductsPageInstance { get; set; }
 
         public List<string> ShoppingCartProducts { get; set; }
         public ShoppingCartPage ShoppingcartPageInstance { get; set; }
+
+        public bool Notifications { get; set; }
 
         public App()
         {
@@ -67,8 +68,6 @@ namespace Tech4Gaming_Deals
             products = products.OrderByDescending(p => p.Date).ToList();
 
             this.Products = new ObservableCollection<Product>(this.Products.Union(products));
-
-            ProductsPageInstance.UpdateProductListItemSource();
         }
 
         // Filter out the already existing products inside Products list
@@ -81,8 +80,6 @@ namespace Tech4Gaming_Deals
             products = products.OrderByDescending(p => p.Date).ToList();
 
             this.Products = new ObservableCollection<Product>(products);
-
-            ProductsPageInstance.UpdateProductListItemSource();
         }
 
         #endregion
@@ -94,7 +91,8 @@ namespace Tech4Gaming_Deals
             LocalData data = new LocalData()
             {
                 Categories = this.CategoryList.ToList(),
-                ShoppingCartProducts = this.ShoppingCartProducts
+                ShoppingCartProducts = this.ShoppingCartProducts,
+                Notifications = this.Notifications
             };
             return data;
         }
@@ -106,6 +104,7 @@ namespace Tech4Gaming_Deals
             {
                 InitializeCategoryList();
                 this.ShoppingCartProducts = new List<string>();
+                this.Notifications = true;
                 return;
             }
 
@@ -115,6 +114,7 @@ namespace Tech4Gaming_Deals
             }
             this.CategoryList = new ObservableCollection<ProductCategory>(data.Categories);
             this.ShoppingCartProducts = data.ShoppingCartProducts;
+            this.Notifications = data.Notifications;
         }
 
         public void RemoveDeprecatedProductsFromShoppingList(List<string> products)

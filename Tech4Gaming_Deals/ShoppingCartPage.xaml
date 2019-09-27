@@ -19,6 +19,18 @@
         <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                      AbsoluteLayout.LayoutFlags="All">
             
+            <Label Text="No Internet connection"
+                   HorizontalOptions="Center"
+                   Margin="0, 5"
+                   IsVisible="false"
+                   x:Name="lblOffline">
+                <Label.TextColor>
+                    <OnPlatform x:TypeArguments="Color">
+                        <On Platform="Android" Value="White"/>
+                        <On Platform="iOS" Value="{x:StaticResource Key=colorSecondaryText}"/>
+                    </OnPlatform>
+                </Label.TextColor>
+            </Label>
 
             <!--#region-->
             <StackLayout Margin="0, 5, 0, 0">

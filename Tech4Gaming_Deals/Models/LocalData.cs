@@ -7,6 +7,6 @@ namespace Tech4Gaming_Deals.Models
     {
         public List<string> ShoppingCartProducts { get; set; }
         public List<ProductCategory> Categories { get; set; }
-        // TODO: Add Settings
+        public bool Notifications { get; set; }
     }
 }

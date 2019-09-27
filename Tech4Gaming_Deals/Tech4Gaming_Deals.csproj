@@ -25,6 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ProductsPage.cs" />
+    <Compile Remove="Models\SettingsData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

@@ -26,20 +26,6 @@
                      Clicked="ActivateSearch"/>
     </ContentPage.ToolbarItems>
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <!--<Style x:Key="fntszNormal" TargetType="Label">
-                <Setter Property="FontSize" Value="15"/>
-            </Style>
-            <Style x:Key="fntszSmall" TargetType="Label">
-                <Setter Property="FontSize" Value="11"/>
-            </Style>-->
-            <!--<Style x:Key="imageProduct" TargetType="Image">
-                <Setter Property="HeightRequest" Value="100"/>
-            </Style>-->
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <AbsoluteLayout>
         <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                      AbsoluteLayout.LayoutFlags="All">
@@ -61,6 +47,19 @@
                    </OnPlatform>
                </local1:RoundedEntry.HeightRequest>
             </local1:RoundedEntry>
+
+            <Label Text="No Internet connection"
+                   HorizontalOptions="Center"
+                   Margin="0, 5"
+                   IsVisible="false"
+                   x:Name="lblOffline">
+                <Label.TextColor>
+                    <OnPlatform x:TypeArguments="Color">
+                        <On Platform="Android" Value="White"/>
+                        <On Platform="iOS" Value="{x:StaticResource Key=colorSecondaryText}"/>
+                    </OnPlatform>
+                </Label.TextColor>
+            </Label>
 
             <!--#region-->
             <StackLayout Margin="0, 5, 0, 0">
@@ -138,8 +137,20 @@
                     </ListView.ItemTemplate>
                     <ListView.Footer>
                         <StackLayout Padding="10">
+                            <ActivityIndicator IsRunning="True"
+                                               Margin="0, 5, 0, 5"
+                                               x:Name="activityIndicator">
+                                <ActivityIndicator.Color>
+                                    <OnPlatform x:TypeArguments="Color">
+                                        <On Platform="Android" Value="White"/>
+                                        <On Platform="iOS" Value="LightGray"/>
+                                    </OnPlatform>
+                                </ActivityIndicator.Color>
+                            </ActivityIndicator>
+
                             <local1:MaterialFrame CornerRadius="10"
                                    BackgroundColor="White"
+                                   x:Name="btnViewMore"
                                    Padding="0">
                                 <Button Text="View more..."
                                         BackgroundColor="White"

@@ -12,10 +12,13 @@
             <TableRoot>
                 <TableSection>
                     <SwitchCell Text="Notifications"
+                                x:Name="swtNotifications"
                                 On="True"
+                                OnChanged="OnNotificationSwitched"
                                 OnColor="{x:StaticResource Key=colorAccent}"/>
                     <ViewCell Tapped="OpenEmailEditor">
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="15, 5">
                             <Label Text="Contact us"
                                    VerticalOptions="Center">
                                 <Label.TextColor>
@@ -29,13 +32,24 @@
                                    VerticalOptions="Center"
                                    HorizontalOptions="EndAndExpand"
                                    TextColor="{x:StaticResource Key=colorSecondaryText}"/>
-
-                            <StackLayout.Padding>
-                                <OnPlatform x:TypeArguments="Thickness">
-                                    <On Platform="Android" Value="15, 5"/>
-                                    <On Platform="iOS" Value="20, 5"/>
-                                </OnPlatform>
-                            </StackLayout.Padding>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="OpenPrivacyPolicy">
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="15, 5">
+                            <Label Text="Privacy policy"
+                                   VerticalOptions="Center">
+                                <Label.TextColor>
+                                    <OnPlatform x:TypeArguments="Color">
+                                        <On Platform="Android" Value="{x:StaticResource Key=colorSecondaryText}"/>
+                                        <On Platform="iOS" Value="Black"/>
+                                    </OnPlatform>
+                                </Label.TextColor>
+                            </Label>
+                            <Label Text=">"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="EndAndExpand"
+                                   TextColor="{x:StaticResource Key=colorSecondaryText}"/>
                         </StackLayout>
                     </ViewCell>
                 </TableSection>
