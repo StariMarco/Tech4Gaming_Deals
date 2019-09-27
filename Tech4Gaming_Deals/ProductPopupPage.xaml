@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="Tech4Gaming_Deals.ProductPopupPage"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
+
+    <StackLayout HorizontalOptions="Center"
+                 VerticalOptions="Center"
+                 x:Name="PopupLayout"
+                 Margin="20, 60">
+
+            <Frame BackgroundColor="White"
+                   Padding="0"
+                   CornerRadius="10">
+                <StackLayout Margin="0">
+                            <Label x:Name="lblName"
+                                    Style="{DynamicResource Key=fntszNormal}"
+                                    TextColor="{x:StaticResource Key=colorPrimaryText}"
+                                    FontAttributes="Bold"
+                                   Margin="10, 10, 10, 5"/>
+                            
+                            <Image BackgroundColor="Transparent"
+                                   HorizontalOptions="CenterAndExpand"
+                                   Aspect="AspectFit"
+                                   x:Name="imgProduct"
+                                   HeightRequest="200"/>
+                            <StackLayout Padding="10">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label x:Name="lblSalePrice"
+                                           Style="{DynamicResource Key=fntszNormal}"
+                                           TextColor="{x:StaticResource Key=colorRed}"
+                                           IsVisible="false"/>
+                                    <Label x:Name="lblPrice"
+                                           Style="{DynamicResource Key=fntszNormal}"
+                                           TextColor="{x:StaticResource Key=colorRed}"/>
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label Text="Description"
+                                            x:Name="lblDescText"
+                                            FontAttributes="Bold"
+                                            Style="{DynamicResource Key=fntszNormal}"
+                                            TextColor="{x:StaticResource Key=colorPrimaryText}"/>
+                                    <ScrollView>
+                                        <Label x:Name="lblDescription"/>
+                                    </ScrollView>
+                                </StackLayout>
+                            </StackLayout>
+                    <Grid Padding="10, 5"
+                          ColumnSpacing="10"
+                          Margin="0, 5, 0, 5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Text="Open"
+                                BackgroundColor="White"
+                                CornerRadius="10"
+                                TextColor="{x:StaticResource Key=colorPrimary}"
+                                BorderColor="{x:StaticResource Key=colorPrimary}"
+                                BorderWidth="1"
+                                Grid.Column="0"
+                                Clicked="OnOpenProductLink"/>
+                        <Button Text="Add to cart"
+                                CornerRadius="10"
+                                x:Name="btnAddToCart"
+                                TextColor="{x:StaticResource Key=colorPrimary}"
+                                BorderColor="{x:StaticResource Key=colorPrimary}"
+                                BorderWidth="1"
+                                Grid.Column="1"
+                                Clicked="OnAddToShoppingCart"/>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+    </StackLayout>
+
+</pages:PopupPage>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Tech4Gaming_Deals.MarkupExtensions"
+             mc:Ignorable="d"
+             x:Class="Tech4Gaming_Deals.MainPage">
+
+    <StackLayout Padding="10, 6, 10, 6">
+        <Frame BackgroundColor="White"
+                Padding="0"
+                VerticalOptions="Start"
+                CornerRadius="10">
+            <StackLayout Orientation="Horizontal" Padding="6, 5, 5, 5"
+                            BackgroundColor="Red">
+                <Frame IsClippedToBounds="True"
+                        Padding="0"
+                        Margin="0"
+                        CornerRadius="10"
+                        HasShadow="False">
+                    <BoxView BackgroundColor="Gray"
+                             HorizontalOptions="Start"
+                             HeightRequest="100"
+                             WidthRequest="100"/>
+                </Frame>
+                <StackLayout Padding="0, 5, 0, 5"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="Yellow">
+                    <Label Text="Questo è il nome"
+                            TextColor="{x:StaticResource colorPrimaryText}"
+                            MaxLines="3"
+                            LineBreakMode="TailTruncation"/>
+                    <StackLayout Orientation="Horizontal"
+                                    Spacing="5"
+                                    VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    BackgroundColor="Green">
+                        <Label Text="12€"
+                                TextColor="{x:StaticResource colorRed}"/>
+                        <Label Text="23€"
+                                TextDecorations="Strikethrough"
+                                TextColor="{x:StaticResource colorPrimaryText}"/>
+                        <Label Text="23/12/2019 11:30:12"
+                                TextColor="{x:StaticResource Key=colorSecondaryText}"
+                                VerticalOptions="End"
+                                HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+
+</ContentPage>

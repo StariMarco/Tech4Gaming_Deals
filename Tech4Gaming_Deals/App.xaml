@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Tech4Gaming_Deals.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--Colors-->
+            <Color x:Key="colorPrimaryLight">#B2DFDB</Color>
+            <Color x:Key="colorPrimary">#009688</Color>
+            <Color x:Key="colorPrimaryDark">#00796B</Color>
+            <Color x:Key="colorPrimaryText">#212121</Color>
+            <Color x:Key="colorSecondaryText">#757575</Color>
+            <Color x:Key="colorDividend">#BDBDBD</Color>
+            <Color x:Key="colorAccent">#FFC107</Color>
+            <Color x:Key="colorRed">#B00020</Color>
+            <!--Styles-->
+            <Style x:Key="fntszNormal" TargetType="Label">
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+            <Style x:Key="fntszSmall" TargetType="Label">
+                <Setter Property="FontSize" Value="11"/>
+            </Style>
+            <Style x:Key="imageProduct" TargetType="Image">
+                <Setter Property="HeightRequest" Value="100"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

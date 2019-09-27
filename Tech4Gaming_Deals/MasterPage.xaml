@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<MasterDetailPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Tech4Gaming_Deals.MasterPage"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu">
+
+            <ContentPage.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                   <On Platform="Android" Value="0"/>
+                   <On Platform="iOS" Value="0, 20, 0, 0"/>
+                </OnPlatform>
+            </ContentPage.Padding>
+
+            <StackLayout Spacing="15"
+                         Padding="20, 10, 0, 10">
+                <BoxView BackgroundColor="Transparent"
+                         x:Name="iosBoxView"
+                         IsVisible="false"
+                         VerticalOptions="Start"
+                         HorizontalOptions="CenterAndExpand"
+                         HeightRequest="10"/>
+                <!--Navigation-->
+                <ListView x:Name="lstNavigation"
+                          SeparatorVisibility="None" 
+                          RowHeight="60"
+                          VerticalOptions="Start"
+                          VerticalScrollBarVisibility="Never"
+                          ItemSelected="OnMenuItemSelected"
+                          ItemTapped="OnMenuItemTapped">
+                          
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <!--Design for menu items-->
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="0, 10, 0, 0"
+                                             Spacing="20">
+                                    <Image Source="{Binding Icon}"
+                                           WidthRequest="25"
+                                           HeightRequest="25"
+                                           VerticalOptions="Center"/>
+                                    <Label Text="{Binding Title}"
+                                           FontSize="18"
+                                           VerticalOptions="Center"
+                                           TextColor="{x:StaticResource Key=colorPrimaryText}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <!--#region Filters-->
+                <!--<Label Text="Filters"
+                        TextColor="{x:StaticResource Key=colorPrimary}"
+                        FontSize="25"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="Start"
+                        Margin="0, 5, 0, 0"/>-->
+
+                <!--Categories-->
+                <StackLayout Margin="0, 0, 10, 0">
+                    <Label Text="Categories"
+                            TextColor="{x:StaticResource Key=colorPrimary}"
+                           FontAttributes="Bold"
+                            FontSize="25"
+                            HorizontalOptions="StartAndExpand"
+                            VerticalOptions="Start"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Text="All"
+                                Grid.Column="0"
+                                FontSize="18"
+                                TextColor="{x:StaticResource Key=colorPrimaryText}"
+                                Clicked="SelectAllCategories">
+                            <Button.BackgroundColor>
+                                <OnPlatform x:TypeArguments="Color">
+                                    <On Platform="Android" Value="#FAFAFA"/>
+                                    <On Platform="iOS" Value="Transparent"/>
+                                </OnPlatform>
+                            </Button.BackgroundColor>
+                        </Button>
+                        <Button Text="None"
+                                Grid.Column="1"
+                                FontSize="18"
+                                TextColor="{x:StaticResource Key=colorPrimaryText}"
+                                Clicked="DeselectAllCategories">
+                            <Button.BackgroundColor>
+                                <OnPlatform x:TypeArguments="Color">
+                                    <On Platform="Android" Value="#FAFAFA"/>
+                                    <On Platform="iOS" Value="Transparent"/>
+                                </OnPlatform>
+                            </Button.BackgroundColor>
+                        </Button>
+                    </Grid>
+
+                    <ListView x:Name="lstCategories"
+                              RowHeight="40"
+                              SeparatorVisibility="None"
+                              VerticalOptions="Start"
+                              VerticalScrollBarVisibility="Never"
+                              ItemSelected="OnMenuItemSelected"
+                              ItemTapped="UpdateCategoryState">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding Image}"
+                                                VerticalOptions="Center"
+                                                Margin="10, 0, 0, 0"/>
+                                        <Label Text="{Binding Name}"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                Margin="20, 0, 0, 0"
+                                                TextColor="{x:StaticResource Key=colorPrimaryText}"
+                                                FontSize="18"/>
+                                </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <!--#endregion-->
+            </StackLayout>
+
+        </ContentPage>
+    </MasterDetailPage.Master>
+
+</MasterDetailPage>

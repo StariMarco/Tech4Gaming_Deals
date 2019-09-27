@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tech4Gaming_Deals.NewProductPage"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Padding="10, 0, 10, 0"
+             Title="">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout VerticalOptions="Center">
+                <Label Text="Add new product"
+                       FontSize="20"
+                       TextColor="{x:StaticResource Key=colorPrimary}"
+                       HorizontalOptions="Center"
+                       Margin="0, 0, 0, 15"/>
+                <Label Text="Link"
+                           FontSize="16"
+                           TextColor="{x:StaticResource Key=colorPrimaryText}"/>
+                <Entry Placeholder="Affiliate Link"
+                       x:Name="txtProductLink"
+                       Keyboard="Url"
+                       Margin="0, 0, 0, 5"
+                       TextChanged="TextChanged"/>
+
+                <Label Text="Info"
+                           FontSize="16"
+                           TextColor="{x:StaticResource Key=colorPrimaryText}"
+                           Margin="0"/>
+                <Entry Placeholder="Name"
+                       x:Name="txtProductName"
+                       Keyboard="Default"
+                       TextChanged="TextChanged"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Entry Placeholder="Price"
+                           x:Name="txtProductPrice"
+                           Keyboard="Numeric"
+                           Grid.Column="0"
+                           TextChanged="TextChanged"/>
+                    <Entry Placeholder="SalePrice"
+                           x:Name="txtProductSalePrice"
+                           Keyboard="Numeric"
+                           Grid.Column="1"
+                           TextChanged="TextChanged"/>
+                </Grid>
+
+                <StackLayout x:Name="categoryLayout">
+                    <Label Text="Category"
+                           FontSize="16"
+                           TextColor="{x:StaticResource Key=colorPrimaryText}"
+                           Margin="0"/>
+                    <Picker Title="Category"
+                            x:Name="pkrCategory"
+                            SelectedIndexChanged="OnCategorySelectionChanged"
+                            Margin="0"
+                            Grid.Column="0"
+                            ClassId="0">
+                        <Picker.Items>
+                            <x:String>Games</x:String>
+                            <x:String>Hardware</x:String>
+                            <x:String>Accessories</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+
+                <AbsoluteLayout Margin="0, 10, 0, 5"
+                                HeightRequest="200">
+                    <Button x:Name="btnPhotoPicker"
+                            Clicked="OnPickPhotoClicked"
+                            BackgroundColor="WhiteSmoke"
+                            BorderColor="{x:StaticResource Key=colorSecondaryText}"
+                            BorderWidth="1"
+                            ImageSource="ic_image.png"
+                            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                            AbsoluteLayout.LayoutFlags="All"
+                            PropertyChanged="TextChanged"/>
+                    <Image x:Name="productImage"
+                           InputTransparent="True"
+                           AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                           AbsoluteLayout.LayoutFlags="All"/>
+                </AbsoluteLayout>
+
+                <StackLayout>
+                    <Label Text="Description"
+                           FontSize="16"
+                           TextColor="{x:StaticResource Key=colorPrimaryText}"/>
+                    <Editor Placeholder="Insert the description here!"
+                            HeightRequest="200"
+                            Visual="Material"
+                            x:Name="txtDescription"
+                            PropertyChanged="TextChanged"/>
+                </StackLayout>
+
+                <Grid Margin="0, 10, 0, 20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Text="Back"
+                            Clicked="OnBtnBack_Pressed"
+                            BackgroundColor="{x:StaticResource Key=colorRed}"
+                            TextColor="White"
+                            Grid.Column="0"/>
+                    <Button Text="Add"
+                            Clicked="OnButtonDoneClicked"
+                            x:Name="btnAdd"
+                            IsEnabled="False"
+                            BackgroundColor="{x:StaticResource Key=colorPrimaryLight}"
+                            TextColor="White"
+                            Grid.Column="1"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

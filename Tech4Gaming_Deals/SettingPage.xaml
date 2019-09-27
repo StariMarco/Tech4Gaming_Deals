@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tech4Gaming_Deals.SettingPage"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Settings">
+
+    <ContentPage.Content>
+        <TableView Intent="Settings">
+            <TableRoot>
+                <TableSection>
+                    <SwitchCell Text="Notifications"
+                                On="True"
+                                OnColor="{x:StaticResource Key=colorAccent}"/>
+                    <ViewCell Tapped="OpenEmailEditor">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Contact us"
+                                   VerticalOptions="Center">
+                                <Label.TextColor>
+                                    <OnPlatform x:TypeArguments="Color">
+                                        <On Platform="Android" Value="{x:StaticResource Key=colorSecondaryText}"/>
+                                        <On Platform="iOS" Value="Black"/>
+                                    </OnPlatform>
+                                </Label.TextColor>
+                            </Label>
+                            <Label Text=">"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="EndAndExpand"
+                                   TextColor="{x:StaticResource Key=colorSecondaryText}"/>
+
+                            <StackLayout.Padding>
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <On Platform="Android" Value="15, 5"/>
+                                    <On Platform="iOS" Value="20, 5"/>
+                                </OnPlatform>
+                            </StackLayout.Padding>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+
+</ContentPage>

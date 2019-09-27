@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Tech4Gaming_Deals.MarkupExtensions"
+             xmlns:local1="clr-namespace:Tech4Gaming_Deals.CustomControls"
+             mc:Ignorable="d"
+             x:Class="Tech4Gaming_Deals.ProductsPage"
+             Title="Products"
+             BackgroundColor="White">
+
+    <ContentPage.BackgroundColor>
+            <OnPlatform x:TypeArguments="Color">
+                <On Platform="Android" Value="{x:StaticResource Key=colorPrimary}"/>
+                <On Platform="iOS" Value="White"/>
+            </OnPlatform>
+    </ContentPage.BackgroundColor>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="ic_add.png"
+                     x:Name="btnNewProduct"
+                     Clicked="CreateNewProduct"/>
+        <ToolbarItem IconImageSource="ic_search.png"
+                     x:Name="btnSearch"
+                     Clicked="ActivateSearch"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--<Style x:Key="fntszNormal" TargetType="Label">
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+            <Style x:Key="fntszSmall" TargetType="Label">
+                <Setter Property="FontSize" Value="11"/>
+            </Style>-->
+            <!--<Style x:Key="imageProduct" TargetType="Image">
+                <Setter Property="HeightRequest" Value="100"/>
+            </Style>-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                     AbsoluteLayout.LayoutFlags="All">
+            <!--Search Bar-->
+            <local1:RoundedEntry Placeholder="Search..."
+                                 x:Name="entrySearchProduct"
+                                 TextColor="{x:StaticResource Key=colorPrimaryText}"
+                                 PlaceholderColor="{x:StaticResource Key=colorSecondaryText}"
+                                 FontSize="16"
+                                 Keyboard="Text"
+                                 Visual="Material"
+                                 Margin="20, 10, 20, 10"
+                                 IsVisible="false"
+                                 BackgroundColor="Transparent">
+               <local1:RoundedEntry.HeightRequest>
+                   <OnPlatform x:TypeArguments="x:Double">
+                       <On Platform="Android" Value="30"/>
+                       <On Platform="iOS" Value="30"/>
+                   </OnPlatform>
+               </local1:RoundedEntry.HeightRequest>
+            </local1:RoundedEntry>
+
+            <!--#region-->
+            <StackLayout Margin="0, 5, 0, 0">
+                <ListView x:Name="lstProducts"
+                          HasUnevenRows="True"
+                          HorizontalOptions="Center"
+                          SeparatorVisibility="None"
+                          ItemSelected="DisableSelection"
+                          VerticalScrollBarVisibility="Never"
+                          CachingStrategy="RecycleElementAndDataTemplate"
+                          IsPullToRefreshEnabled="True"
+                          Refreshing="OnRefreshProducts"
+                          ItemTapped="OnShowPopup"
+                          BindingContext="{Binding .}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell BindingContextChanged="OnBindingContexChanged">
+                                <StackLayout Padding="10, 6, 10, 6">
+                                    <local1:MaterialFrame BackgroundColor="White"
+                                           Padding="0"
+                                           VerticalOptions="Start"
+                                           CornerRadius="10">
+                                        <StackLayout Orientation="Horizontal" Padding="6, 5, 5, 5">
+                                            <Frame IsClippedToBounds="True"
+                                                   Padding="0"
+                                                   Margin="0"
+                                                   CornerRadius="10"
+                                                   HasShadow="False">
+                                                <ImageButton BackgroundColor="Transparent"
+                                                             x:Name="imgProduct"
+                                                             Source="{Binding productImage}"
+                                                             HorizontalOptions="Start"
+                                                             Style="{DynamicResource Key=imageProduct}"
+                                                             Clicked="OpenUrl"
+                                                             CommandParameter="{Binding .}"
+                                                             WidthRequest="{Binding Source={x:Reference imgProduct}, Path=HeightRequest}"/>
+                                            </Frame>
+                                            <AbsoluteLayout HorizontalOptions="FillAndExpand">
+                                                <StackLayout Padding="0, 5, 0, 5"
+                                                             AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                                             AbsoluteLayout.LayoutFlags="All"
+                                                             HorizontalOptions="FillAndExpand">
+                                                    <Label Text="{Binding Name}"
+                                                           Style="{DynamicResource Key=fntszNormal}"
+                                                           TextColor="{x:StaticResource colorPrimaryText}"
+                                                           MaxLines="3"
+                                                           LineBreakMode="TailTruncation"/>
+                                                    <StackLayout Orientation="Horizontal"
+                                                                 Spacing="5"
+                                                                 HorizontalOptions="FillAndExpand"
+                                                                 VerticalOptions="FillAndExpand">
+                                                        <Label Text="{Binding SalePrice, StringFormat='{0:F2}€'}"
+                                                               x:Name="lblProductSalePrice"
+                                                               Style="{DynamicResource Key=fntszNormal}"
+                                                               TextColor="{x:StaticResource colorRed}"/>
+                                                        <Label Text="{Binding Price, StringFormat='{0:F2}€'}"
+                                                               x:Name="lblProductPrice"
+                                                               Style="{DynamicResource Key=fntszSmall}"
+                                                               TextDecorations="Strikethrough"
+                                                               TextColor="{x:StaticResource colorPrimaryText}"/>
+                                                        <Label Text="{Binding Date}"
+                                                               Style="{DynamicResource Key=fntszSmall}"
+                                                               TextColor="{x:StaticResource Key=colorSecondaryText}"
+                                                               VerticalOptions="End"
+                                                               HorizontalOptions="EndAndExpand"
+                                                               Margin="20, 0, 0, 0"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </AbsoluteLayout>
+                                        </StackLayout>
+                                    </local1:MaterialFrame>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <StackLayout Padding="10">
+                            <local1:MaterialFrame CornerRadius="10"
+                                   BackgroundColor="White"
+                                   Padding="0">
+                                <Button Text="View more..."
+                                        BackgroundColor="White"
+                                        CornerRadius="10"
+                                        Clicked="OnViewMoreProductsClicked"
+                                        TextColor="{x:StaticResource Key=colorPrimary}"/>
+                            </local1:MaterialFrame>
+                        </StackLayout>
+                    </ListView.Footer>
+                </ListView>
+            </StackLayout>
+            <!--#endregion-->
+        </StackLayout>
+    </AbsoluteLayout>
+
+</ContentPage>
+
+
+
+<!--Source="{local:EmbeddedImage ResourceId=Tech4Gaming_Deals.Images.test-img.png}"-->
