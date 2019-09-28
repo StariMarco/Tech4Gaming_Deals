@@ -99,6 +99,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PhotoPickerService.cs" />
     <Compile Include="CustomRenderers\RoundedEntryDroid.cs" />
+    <Compile Include="CustomRenderers\CustomImageButtonDroid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

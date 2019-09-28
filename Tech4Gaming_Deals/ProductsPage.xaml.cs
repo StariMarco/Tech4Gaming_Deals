@@ -21,6 +21,7 @@ namespace Tech4Gaming_Deals
             InitializeComponent();
 
             _app = Application.Current as App;
+            _app.ProductPage = (this);
 
             if (IsInternetMissing())
             {
@@ -58,8 +59,9 @@ namespace Tech4Gaming_Deals
 
         private void OpenUrl(object sender, EventArgs e)
         {
-            var product = (sender as ImageButton).CommandParameter as Product;
-            Device.OpenUri(new Uri(product.Url));
+            // The classId is used to store the product url
+            var url = (sender as Image).ClassId;
+            Device.OpenUri(new Uri(url));
         }
 
         #region Product Popup
@@ -79,6 +81,9 @@ namespace Tech4Gaming_Deals
         {
             var cell = sender as ViewCell;
             var product = cell.BindingContext as Product;
+
+            if (cell == null || product == null)
+                return;
 
             if(product.SalePrice <= 0)
             {
@@ -186,7 +191,7 @@ namespace Tech4Gaming_Deals
             lblOffline.IsVisible = false;
             btnViewMore.IsVisible = true;
 
-            await _app.FilterProductsAsync();
+            await _app.FilterProductsAsync(refreshProductsList: false);
             UpdateProductListItemSource();
             lstProducts.EndRefresh();
         }

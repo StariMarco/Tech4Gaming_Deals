@@ -24,6 +24,8 @@ namespace Tech4Gaming_Deals
         public List<string> ShoppingCartProducts { get; set; }
         public ShoppingCartPage ShoppingcartPageInstance { get; set; }
 
+        public ProductsPage ProductPage { get; set; }
+
         public bool Notifications { get; set; }
 
         public App()
@@ -53,7 +55,7 @@ namespace Tech4Gaming_Deals
             CategoryList.RemoveAt(index);
             CategoryList.Insert(index, category);
 
-            await FilterProductsAsync();
+            await FilterProductsAsync(refreshProductsList: true);
         }
 
         #region Tech4Gaming Api
@@ -65,14 +67,14 @@ namespace Tech4Gaming_Deals
             List<Product> products = await OnlineDataManager.GetProductsByCategoryAsync(this.CategoryList);
 
             // Order by Date
-            products = products.OrderByDescending(p => p.Date).ToList();
+            products = this.Products.ToList().Union(products).ToList();
 
-            this.Products = new ObservableCollection<Product>(this.Products.Union(products));
+            this.Products = new ObservableCollection<Product>(products.OrderByDescending(p => p.Date));
         }
 
         // Filter out the already existing products inside Products list
 
-        public async Task FilterProductsAsync()
+        public async Task FilterProductsAsync(bool refreshProductsList)
         {
             List<Product> products = await OnlineDataManager.FilterProductsByCategoryAsync(this.CategoryList);
 
@@ -80,6 +82,9 @@ namespace Tech4Gaming_Deals
             products = products.OrderByDescending(p => p.Date).ToList();
 
             this.Products = new ObservableCollection<Product>(products);
+
+            if (refreshProductsList)
+                ProductPage.UpdateProductListItemSource();
         }
 
         #endregion
