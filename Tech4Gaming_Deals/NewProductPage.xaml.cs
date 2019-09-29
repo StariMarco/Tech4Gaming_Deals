@@ -9,14 +9,14 @@ using Tech4Gaming_Deals.Managers;
 using System.IO;
 using System.Threading.Tasks;
 using Refit;
+using Rg.Plugins.Popup.Services;
 
 namespace Tech4Gaming_Deals
 {
     public partial class NewProductPage : ContentPage
     {
         private ProductPost _newProduct;
-        private byte[] _androidByteArray;
-        private MemoryStream _stream;
+        private byte[] _imageByteArray;
 
         public NewProductPage()
         {
@@ -100,8 +100,8 @@ namespace Tech4Gaming_Deals
                 await DisplayAlert("Error", $"An error occurred \n {ex.Message}", "OK");
             }
 
-            // User confirmation
-            bool userConfirmation = await DisplayAlert("Confirmation", GetUserConfirmationString(), "ADD", "CANCEL");
+            //User confirmation
+            bool userConfirmation = await DisplayAlert("Confirmation", "Do you want to add the product to the database?", "ADD", "CANCEL");
 
             if (!userConfirmation)
                 return;
@@ -110,10 +110,7 @@ namespace Tech4Gaming_Deals
 
             try
             {
-                if (Device.RuntimePlatform == Device.iOS)
-                    result = await OnlineDataManager.PostProductAsync(_newProduct, new ByteArrayPart(_stream.ToArray(), "name"));
-                else
-                    result = await OnlineDataManager.PostProductAsync(_newProduct, new ByteArrayPart(_androidByteArray, "name"));
+                result = await OnlineDataManager.PostProductAsync(_newProduct, new ByteArrayPart(_imageByteArray, "name"));
             }
             catch (Exception ex)
             {
@@ -127,9 +124,7 @@ namespace Tech4Gaming_Deals
                 return;
             }
 
-            string productStr = "The product has been added successfully\n";
-            productStr += GetProductOutString();
-            await DisplayAlert("Done", productStr, "OK");
+            await DisplayAlert("Done", "The product has been added successfully", "OK");
 
             await Navigation.PopAsync();
 
@@ -140,28 +135,10 @@ namespace Tech4Gaming_Deals
             _newProduct.Url = txtProductLink.Text;
             _newProduct.Name = txtProductName.Text;
             _newProduct.Price = float.Parse(txtProductPrice.Text);
-            _newProduct.SalePrice = float.Parse(txtProductSalePrice?.Text);
+            _newProduct.SalePrice = 0;
+            if(!String.IsNullOrEmpty(txtProductSalePrice.Text))
+                _newProduct.SalePrice = float.Parse(txtProductSalePrice.Text);
             _newProduct.Description = txtDescription.Text;
-        }
-
-
-        private string GetProductOutString()
-        {
-            string tmp = "";
-            tmp += $"Name: {_newProduct.Name} \n";
-            tmp += $"Url: {_newProduct.Url} \n";
-            tmp += $"Price: {_newProduct.Price} \n";
-            tmp += $"SalePrice: {_newProduct.SalePrice} \n";
-            tmp += $"Category: {_newProduct.Category}";
-            tmp += $"Description: {_newProduct.Description}";
-            return tmp;
-        }
-
-        private string GetUserConfirmationString()
-        {
-            string confirmationString = "Do you want to add the product to the database? \n\n";
-            confirmationString += GetProductOutString();
-            return confirmationString;
         }
 
         #endregion
@@ -176,18 +153,9 @@ namespace Tech4Gaming_Deals
             System.IO.Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
             if (stream != null)
             {
-                if(Device.RuntimePlatform == Device.iOS)
-                {
-                    // Save the stream
-                    _stream = new MemoryStream();
-                    await stream.CopyToAsync(_stream);
-                    stream.Position = 0;
-                }
-                else
-                {
-                    _androidByteArray = GetImageStreamAsBytes(stream);
-                }
-                productImage.Source = ImageSource.FromStream(() => stream);
+                _imageByteArray = GetImageStreamAsBytes(stream);
+                
+                productImage.Source = ImageSource.FromStream(() => new MemoryStream(_imageByteArray));
                 btnPhotoPicker.Opacity = 0.1f;
             }
             
@@ -206,6 +174,25 @@ namespace Tech4Gaming_Deals
                 }
                 return ms.ToArray();
             }
+        }
+
+        #endregion
+
+        #region Product Preview
+
+        private async void GetProductPreview(object sender, EventArgs e)
+        {
+            CreateProduct();
+
+            await PopupNavigation.Instance.PushAsync((Rg.Plugins.Popup.Pages.PopupPage)new ProductPreviewPopup(_newProduct, _imageByteArray, this), true);
+        }
+
+        public void LoadChanges()
+        {
+            txtProductName.Text = _newProduct.Name;
+            txtProductPrice.Text = _newProduct.Price.ToString();
+            txtProductSalePrice.Text = _newProduct.SalePrice.ToString();
+            txtDescription.Text = _newProduct.Description;
         }
 
         #endregion

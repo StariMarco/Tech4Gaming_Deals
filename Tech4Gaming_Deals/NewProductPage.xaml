@@ -15,7 +15,7 @@
                        FontSize="20"
                        TextColor="{x:StaticResource Key=colorPrimary}"
                        HorizontalOptions="Center"
-                       Margin="0, 0, 0, 15"/>
+                       Margin="0, 10, 0, 15"/>
                 <Label Text="Link"
                            FontSize="16"
                            TextColor="{x:StaticResource Key=colorPrimaryText}"/>
@@ -102,7 +102,7 @@
                             PropertyChanged="TextChanged"/>
                 </StackLayout>
 
-                <Grid Margin="0, 10, 0, 20">
+                <Grid Margin="0, 10, 0, 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -111,10 +111,12 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Button Text="Back"
-                            Clicked="OnBtnBack_Pressed"
-                            BackgroundColor="{x:StaticResource Key=colorRed}"
-                            TextColor="White"
+                    <Button Text="Preview"
+                            BindingContext="{x:Reference btnAdd}"
+                            IsEnabled="{Binding Source={x:Reference btnAdd}, Path=IsEnabled}"
+                            Clicked="GetProductPreview"
+                            BackgroundColor="{Binding Source={x:Reference btnAdd}, Path=BackgroundColor}"
+                            TextColor="{Binding Source={x:Reference btnAdd}, Path=TextColor}"
                             Grid.Column="0"/>
                     <Button Text="Add"
                             Clicked="OnButtonDoneClicked"
@@ -124,6 +126,10 @@
                             TextColor="White"
                             Grid.Column="1"/>
                 </Grid>
+                <Button Text="Back"
+                            Clicked="OnBtnBack_Pressed"
+                            BackgroundColor="{x:StaticResource Key=colorRed}"
+                            TextColor="White"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
