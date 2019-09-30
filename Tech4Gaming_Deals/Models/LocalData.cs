@@ -8,5 +8,6 @@ namespace Tech4Gaming_Deals.Models
         public List<string> ShoppingCartProducts { get; set; }
         public List<ProductCategory> Categories { get; set; }
         public bool Notifications { get; set; }
+        //public Region SelectedRegion { get; set; }
     }
 }

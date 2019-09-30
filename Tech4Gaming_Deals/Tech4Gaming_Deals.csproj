@@ -22,6 +22,8 @@
     <PackageReference Include="Json.Net" Version="1.0.16" />
     <PackageReference Include="MongoDB.Bson" Version="2.9.1" />
     <PackageReference Include="MongoDB.Driver" Version="2.9.1" />
+    <PackageReference Include="Xam.Plugins.Forms.Svg" Version="1.0.0.27" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ProductsPage.cs" />
@@ -37,16 +39,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="test-img.png" />
-    <None Remove="Images\test-img.png" />
-    <None Remove="Images\test-img2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images\test-img.png" />
-    <EmbeddedResource Include="Images\test-img2.png" />
+    <None Remove="Images\America_Flag.svg" />
+    <None Remove="Images\England_Flag.svg" />
+    <None Remove="Images\Italy_Flag.svg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Android">
       <HintPath>..\..\..\..\..\..\Library\Frameworks\Xamarin.Android.framework\Versions\9.4.1.0\lib\xamarin.android\xbuild-frameworks\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing.Common">
+      <HintPath>..\..\..\..\..\..\Library\Frameworks\Xamarin.Android.framework\Versions\10.0.0.43\lib\xamarin.android\xbuild-frameworks\MonoAndroid\v1.0\Facades\System.Drawing.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\America_Flag.svg" />
+    <EmbeddedResource Include="Images\England_Flag.svg" />
+    <EmbeddedResource Include="Images\Italy_Flag.svg" />
   </ItemGroup>
 </Project>

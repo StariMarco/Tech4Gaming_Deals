@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tech4Gaming_Deals.SelectRegionPage"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
+
+    <StackLayout>
+        <StackLayout HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="CenterAndExpand"
+                         Padding="20"
+                         x:Name="stackLayout">
+
+                <Label Text="Select your location"
+                           HorizontalOptions="Center"
+                           TextColor="{x:StaticResource Key=colorPrimary}"
+                           Margin="0, 0, 0, 20"/>
+
+                <Grid ColumnSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Frame VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           BorderColor="{x:StaticResource Key=colorPrimary}"
+                           HasShadow="false"
+                           IsClippedToBounds="True"
+                           Padding="0"
+                           CornerRadius="10"
+                           Grid.Column="0">
+                        <AbsoluteLayout>
+                            <Button AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    BackgroundColor="Transparent"
+                                    Clicked="OnSelectLocation"
+                                    x:Name="btnItaly"
+                                    CommandParameter="{Binding Source={x:Reference svgItaly}}"/>
+                            <ffimageloadingsvg:SvgCachedImage WidthRequest="90"
+                                                              HeightRequest="90"
+                                                              Source="resource://Tech4Gaming_Deals.Images.Italy_Flag.svg"
+                                                              x:Name="svgItaly"
+                                                              InputTransparent="True"/>
+                        </AbsoluteLayout>
+                    
+                    </Frame>
+                    <Frame VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           BorderColor="{x:StaticResource Key=colorPrimary}"
+                           HasShadow="false"
+                           IsClippedToBounds="True"
+                           Padding="0"
+                           CornerRadius="10"
+                           Grid.Column="1">
+                        <AbsoluteLayout>
+                            <Button AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    BackgroundColor="Transparent"
+                                    Clicked="OnSelectLocation"
+                                    x:Name="btnAmerica"
+                                    CommandParameter="{Binding Source={x:Reference svgAmerica}}"/>
+                            <ffimageloadingsvg:SvgCachedImage WidthRequest="90"
+                                                              HeightRequest="90"
+                                                              Source="resource://Tech4Gaming_Deals.Images.America_Flag.svg"
+                                                              x:Name="svgAmerica"
+                                                              InputTransparent="True"/>
+                        </AbsoluteLayout>
+                    
+                    </Frame>
+                    <Frame VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           BorderColor="{x:StaticResource Key=colorPrimary}"
+                           HasShadow="false"
+                           IsClippedToBounds="True"
+                           Padding="0"
+                           CornerRadius="10"
+                           Grid.Column="2">
+                        <AbsoluteLayout>
+                            <Button AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    BackgroundColor="Transparent"
+                                    Clicked="OnSelectLocation"
+                                    x:Name="btnEngland"
+                                    CommandParameter="{Binding Source={x:Reference svgEngland}}"/>
+                            <ffimageloadingsvg:SvgCachedImage WidthRequest="90"
+                                                              HeightRequest="90"
+                                                              Source="resource://Tech4Gaming_Deals.Images.England_Flag.svg"
+                                                              x:Name="svgEngland"
+                                                              InputTransparent="True"/>
+                        </AbsoluteLayout>
+                    
+                    </Frame>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+        <Button Text="Confirm"
+                    VerticalOptions="End"
+                    BackgroundColor="{x:StaticResource Key=colorPrimary}"
+                    TextColor="White"
+                    CornerRadius="0"
+                    Clicked="OnConfirm"
+                    IsVisible="false"
+                x:Name="btnSelect"/>
+    </StackLayout>
+
+</ContentPage>

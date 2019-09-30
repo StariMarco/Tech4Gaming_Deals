@@ -26,6 +26,8 @@ namespace Tech4Gaming_Deals
 
         public ProductsPage ProductPage { get; set; }
 
+        public List<Location> SelectedLocations { get; set; }
+
         public bool Notifications { get; set; }
 
         public App()
@@ -33,10 +35,11 @@ namespace Tech4Gaming_Deals
             InitializeComponent();
 
             this.Products = new ObservableCollection<Product>();
+            this.SelectedLocations = new List<Location>();
 
             LoadLocalData();
 
-            //MainPage = new NavigationPage(new ProductsPage());
+            //MainPage = new NavigationPage(new SelectRegionPage());
             MainPage = new MasterPage();
         }
 

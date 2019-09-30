@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Content;
 using System.IO;
 using System.Threading.Tasks;
+using SVG.Forms.Plugin.Droid;
 
 namespace Tech4Gaming_Deals.Droid
 {
@@ -27,9 +28,11 @@ namespace Tech4Gaming_Deals.Droid
             base.OnCreate(savedInstanceState);
 
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
             Instance = this;
             LoadApplication(new App());
         }

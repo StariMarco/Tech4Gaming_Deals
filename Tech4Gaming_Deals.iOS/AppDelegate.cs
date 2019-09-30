@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using SVG.Forms.Plugin.iOS;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -27,6 +28,8 @@ namespace Tech4Gaming_Deals.iOS
             Rg.Plugins.Popup.Popup.Init();
 
             global::Xamarin.Forms.Forms.Init();
+
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 
             UINavigationBar.Appearance.TintColor = Color.FromHex("#009688").ToUIColor();
 

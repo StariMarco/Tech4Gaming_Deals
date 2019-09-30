@@ -23,6 +23,9 @@ namespace Tech4Gaming_Deals
             _app = Application.Current as App;
             _app.ProductPage = (this);
 
+            //if (_app.SelectedLocations.Count == 0)
+                Navigation.PushModalAsync(new SelectRegionPage());
+
             if (IsInternetMissing())
             {
                 //  Not Internet connection
@@ -85,7 +88,7 @@ namespace Tech4Gaming_Deals
             if (cell == null || product == null)
                 return;
 
-            if(product.SalePrice <= 0)
+            if (product.SalePrice <= 0)
             {
                 var lblPrice = cell.FindByName("lblProductPrice") as Label;
                 var lblSalePrice = cell.FindByName("lblProductSalePrice") as Label;
