@@ -6,6 +6,7 @@ using SVG.Forms.Plugin.Abstractions;
 using Tech4Gaming_Deals.Models;
 using Xamarin.Forms;
 using System.Xml.Linq;
+using Tech4Gaming_Deals.Managers;
 
 namespace Tech4Gaming_Deals
 {
@@ -14,9 +15,28 @@ namespace Tech4Gaming_Deals
         public SelectRegionPage()
         {
             InitializeComponent();
+            SetupLocationButtonsBindingContext();
+            LoadLocations();
+        }
 
-            //NavigationPage.SetHasNavigationBar(this, false);
+        private void LoadLocations()
+        {
+            var selectedLocations = (Application.Current as App).SelectedLocations;
+            if (selectedLocations.Count == 0)
+                return;
 
+            btnSelect.IsVisible = true;
+
+            if (selectedLocations.Find(l => String.Equals(l.Name, "Italy", StringComparison.OrdinalIgnoreCase)) != null)
+                svgItaly.BackgroundColor = (Color)Application.Current.Resources["colorPrimary"];
+            if (selectedLocations.Find(l => String.Equals(l.Name, "America", StringComparison.OrdinalIgnoreCase)) != null)
+                svgAmerica.BackgroundColor = (Color)Application.Current.Resources["colorPrimary"];
+            if (selectedLocations.Find(l => String.Equals(l.Name, "England", StringComparison.OrdinalIgnoreCase)) != null)
+                svgEngland.BackgroundColor = (Color)Application.Current.Resources["colorPrimary"];
+        }
+
+        private void SetupLocationButtonsBindingContext()
+        {
             btnItaly.BindingContext = new Location()
             {
                 Name = "Italy",
@@ -45,8 +65,7 @@ namespace Tech4Gaming_Deals
             {
                 // Deselect
                 sourceImage.BackgroundColor = Color.Transparent;
-                sourceImage.InputTransparent = true;
-                app.SelectedLocations.Remove(button.BindingContext as Location);
+                app.SelectedLocations.RemoveAt(app.SelectedLocations.IndexOf(app.SelectedLocations.Find(l => l.Name == (button.BindingContext as Location).Name)));
                 if (app.SelectedLocations.Count == 0)
                     btnSelect.IsVisible = false;
             }
@@ -54,7 +73,6 @@ namespace Tech4Gaming_Deals
             {
                 // Select
                 sourceImage.BackgroundColor = (Color) Application.Current.Resources["colorPrimary"];
-                sourceImage.InputTransparent = true;
                 app.SelectedLocations.Add(button.BindingContext as Location);
                 btnSelect.IsVisible = true;
             }
@@ -69,6 +87,7 @@ namespace Tech4Gaming_Deals
 
         private void OnConfirm(object sender, EventArgs e)
         {
+            LocalDataManager.Save((Application.Current as App).GetLocalDataToSave());
             Navigation.PopModalAsync();
         }
 

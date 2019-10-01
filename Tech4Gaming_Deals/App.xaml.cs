@@ -37,6 +37,7 @@ namespace Tech4Gaming_Deals
             this.Products = new ObservableCollection<Product>();
             this.SelectedLocations = new List<Location>();
 
+
             LoadLocalData();
 
             //MainPage = new NavigationPage(new SelectRegionPage());
@@ -67,7 +68,7 @@ namespace Tech4Gaming_Deals
 
         public async Task UpdateProductsAsync()
         {
-            List<Product> products = await OnlineDataManager.GetProductsByCategoryAsync(this.CategoryList);
+            List<Product> products = await OnlineDataManager.GetProductsByCategoryLocationAsync(this.CategoryList, GetCurrencyString());
 
             // Order by Date
             products = this.Products.ToList().Union(products).ToList();
@@ -75,11 +76,20 @@ namespace Tech4Gaming_Deals
             this.Products = new ObservableCollection<Product>(products.OrderByDescending(p => p.Date));
         }
 
+        private string GetCurrencyString()
+        {
+            string result = "";
+            result += (SelectedLocations.Find(l => String.Equals(l.Name, "England", StringComparison.Ordinal)) != null) ? "£" : "n";
+            result += (SelectedLocations.Find(l => String.Equals(l.Name, "America", StringComparison.Ordinal)) != null) ? "$" : "n";
+            result += (SelectedLocations.Find(l => String.Equals(l.Name, "Italy", StringComparison.Ordinal)) != null) ? "e" : "n";
+            return result;
+        }
+
         // Filter out the already existing products inside Products list
 
         public async Task FilterProductsAsync(bool refreshProductsList)
         {
-            List<Product> products = await OnlineDataManager.FilterProductsByCategoryAsync(this.CategoryList);
+            List<Product> products = await OnlineDataManager.FilterProductsByCategoryLocationAsync(this.CategoryList, GetCurrencyString());
 
             // Order by Date
             products = products.OrderByDescending(p => p.Date).ToList();
@@ -100,7 +110,8 @@ namespace Tech4Gaming_Deals
             {
                 Categories = this.CategoryList.ToList(),
                 ShoppingCartProducts = this.ShoppingCartProducts,
-                Notifications = this.Notifications
+                Notifications = this.Notifications,
+                SelectedLocations = this.SelectedLocations
             };
             return data;
         }
@@ -113,6 +124,7 @@ namespace Tech4Gaming_Deals
                 InitializeCategoryList();
                 this.ShoppingCartProducts = new List<string>();
                 this.Notifications = true;
+                this.SelectedLocations = new List<Location>();
                 return;
             }
 
@@ -123,6 +135,8 @@ namespace Tech4Gaming_Deals
             this.CategoryList = new ObservableCollection<ProductCategory>(data.Categories);
             this.ShoppingCartProducts = data.ShoppingCartProducts;
             this.Notifications = data.Notifications;
+            if(data.SelectedLocations != null)
+                this.SelectedLocations = data.SelectedLocations;
         }
 
         public void RemoveDeprecatedProductsFromShoppingList(List<string> products)

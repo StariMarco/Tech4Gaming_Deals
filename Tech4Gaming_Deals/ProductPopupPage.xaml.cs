@@ -31,10 +31,10 @@ namespace Tech4Gaming_Deals
             imgProduct.Source = SelectedProduct.productImage;
 
             // Price
-            lblPrice.Text = $"{SelectedProduct.Price.ToString()}€";
+            lblPrice.Text = $"{SelectedProduct.Price.ToString()}{SelectedProduct.currencySymbol}";
             if(SelectedProduct.SalePrice > 0)
             {
-                lblSalePrice.Text = $"{SelectedProduct.SalePrice.ToString()}€";
+                lblSalePrice.Text = $"{SelectedProduct.SalePrice.ToString()}{SelectedProduct.currencySymbol}";
                 lblSalePrice.IsVisible = true;
                 lblPrice.TextColor = (Color)Application.Current.Resources["colorSecondaryText"];
                 lblPrice.TextDecorations = TextDecorations.Strikethrough;

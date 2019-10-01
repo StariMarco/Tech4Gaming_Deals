@@ -14,6 +14,6 @@ namespace Tech4Gaming_Deals.Models
         public DateTime Date { get; set; }
         public string Url { get; set; }
         public string Description { get; set; }
-        //public Byte[] productImage { get; set; }
+        public string CurrencySymbol { get; set; }
     }
 }

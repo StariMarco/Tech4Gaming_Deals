@@ -19,6 +19,11 @@ namespace Tech4Gaming_Deals
             await Navigation.PushModalAsync(new ContactUsPage());
         }
 
+        private void OnSetLocations(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new SelectRegionPage());
+        }
+
         private void OpenPrivacyPolicy(object sender, EventArgs e)
         {
             // TODO: Go to privacy policy page

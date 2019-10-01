@@ -25,7 +25,7 @@
                        Margin="0, 0, 0, 5"
                        TextChanged="TextChanged"/>
 
-                <Label Text="Info"
+                <Label Text="Name"
                            FontSize="16"
                            TextColor="{x:StaticResource Key=colorPrimaryText}"
                            Margin="0"/>
@@ -43,36 +43,76 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Entry Placeholder="Price"
-                           x:Name="txtProductPrice"
-                           Keyboard="Numeric"
-                           Grid.Column="0"
-                           TextChanged="TextChanged"/>
-                    <Entry Placeholder="SalePrice"
-                           x:Name="txtProductSalePrice"
-                           Keyboard="Numeric"
-                           Grid.Column="1"
-                           TextChanged="TextChanged"/>
-                </Grid>
-
-                <StackLayout x:Name="categoryLayout">
-                    <Label Text="Category"
+                    <StackLayout Grid.Column="0">
+                        <Label Text="Price"
+                               x:Name="lblPriceTag"
                            FontSize="16"
                            TextColor="{x:StaticResource Key=colorPrimaryText}"
                            Margin="0"/>
-                    <Picker Title="Category"
-                            x:Name="pkrCategory"
-                            SelectedIndexChanged="OnCategorySelectionChanged"
-                            Margin="0"
-                            Grid.Column="0"
-                            ClassId="0">
-                        <Picker.Items>
-                            <x:String>Games</x:String>
-                            <x:String>Hardware</x:String>
-                            <x:String>Accessories</x:String>
-                        </Picker.Items>
-                    </Picker>
-                </StackLayout>
+                        <Entry Placeholder="Price"
+                               x:Name="txtProductPrice"
+                               Keyboard="Numeric"
+                               TextChanged="TextChanged"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="Sale Price"
+                               x:Name="lblSalePriceTag"
+                           FontSize="16"
+                           TextColor="{x:StaticResource Key=colorPrimaryText}"
+                           Margin="0"/>
+                        <Entry Placeholder="SalePrice"
+                               x:Name="txtProductSalePrice"
+                               Keyboard="Numeric"
+                               TextChanged="TextChanged"/>
+                    </StackLayout>
+                </Grid>
+
+                <Grid RowSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0">
+                        <Label Text="Category"
+                               FontSize="16"
+                               TextColor="{x:StaticResource Key=colorPrimaryText}"
+                               Margin="0"/>
+                        <Picker Title="Category"
+                                x:Name="pkrCategory"
+                                SelectedIndexChanged="OnCategorySelectionChanged"
+                                Margin="0"
+                                ClassId="0">
+                            <Picker.Items>
+                                <x:String>Games</x:String>
+                                <x:String>Hardware</x:String>
+                                <x:String>Accessories</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="Location"
+                               FontSize="16"
+                               TextColor="{x:StaticResource Key=colorPrimaryText}"
+                               Margin="0"/>
+                        <Picker Title="Location"
+                                x:Name="pkrLocation"
+                                SelectedIndexChanged="OnLocationSelectionChanged"
+                                Margin="0"
+                                ClassId="0">
+                            <Picker.Items>
+                                <x:String>Italy</x:String>
+                                <x:String>America</x:String>
+                                <x:String>England</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+                </Grid>
 
                 <AbsoluteLayout Margin="0, 10, 0, 5"
                                 HeightRequest="200">

@@ -33,6 +33,7 @@ namespace Tech4Gaming_Deals
                      String.IsNullOrWhiteSpace(txtProductName.Text) ||
                      String.IsNullOrWhiteSpace(txtProductPrice.Text) ||
                      _newProduct.Category == null ||
+                     _newProduct.CurrencySymbol == null ||
                      productImage.Source == null);
         }
 
@@ -70,6 +71,27 @@ namespace Tech4Gaming_Deals
             var picker = sender as Picker;
 
             _newProduct.Category = picker.Items[picker.SelectedIndex];
+
+            CheckProductCompletition();
+        }
+
+        private void OnLocationSelectionChanged(object sender, EventArgs e)
+        {
+            var picker = sender as Picker;
+
+            string symbol;
+            string item = picker.Items[picker.SelectedIndex];
+            if (String.Equals(item, "Italy", StringComparison.Ordinal))
+                symbol = "€";
+            else if (String.Equals(item, "America", StringComparison.Ordinal))
+                symbol = "$";
+            else
+                symbol = "£";
+
+            _newProduct.CurrencySymbol = symbol;
+
+            lblPriceTag.Text = $"Price ({symbol})";
+            lblSalePriceTag.Text = $"Sale Price ({symbol})";
 
             CheckProductCompletition();
         }
@@ -136,7 +158,7 @@ namespace Tech4Gaming_Deals
             _newProduct.Name = txtProductName.Text;
             _newProduct.Price = float.Parse(txtProductPrice.Text);
             _newProduct.SalePrice = 0;
-            if(!String.IsNullOrEmpty(txtProductSalePrice.Text))
+            if (!String.IsNullOrEmpty(txtProductSalePrice.Text))
                 _newProduct.SalePrice = float.Parse(txtProductSalePrice.Text);
             _newProduct.Description = txtDescription.Text;
         }
@@ -154,11 +176,11 @@ namespace Tech4Gaming_Deals
             if (stream != null)
             {
                 _imageByteArray = GetImageStreamAsBytes(stream);
-                
+
                 productImage.Source = ImageSource.FromStream(() => new MemoryStream(_imageByteArray));
                 btnPhotoPicker.Opacity = 0.1f;
             }
-            
+
             button.IsEnabled = true;
         }
 

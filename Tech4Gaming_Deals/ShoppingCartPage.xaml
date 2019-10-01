@@ -80,11 +80,11 @@
                                                                  Spacing="5"
                                                                  HorizontalOptions="FillAndExpand"
                                                                  VerticalOptions="FillAndExpand">
-                                                        <Label Text="{Binding SalePrice, StringFormat='{0:F2}€'}"
+                                                        <Label Text="{Binding SalePrice, StringFormat='{0:F2}'}"
                                                                x:Name="lblProductSalePrice"
                                                                Style="{DynamicResource Key=fntszNormal}"
                                                                TextColor="{x:StaticResource colorRed}"/>
-                                                        <Label Text="{Binding Price, StringFormat='{0:F2}€'}"
+                                                        <Label Text="{Binding Price, StringFormat='{0:F2}'}"
                                                                x:Name="lblProductPrice"
                                                                Style="{DynamicResource Key=fntszSmall}"
                                                                TextDecorations="Strikethrough"

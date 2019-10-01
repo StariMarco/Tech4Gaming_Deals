@@ -38,11 +38,16 @@ namespace Tech4Gaming_Deals.Models
             return await _restClient.GetProductsByCategoryLimit(productCategory, skip, limit);
         }
 
+        public async Task<Product[]> GetProductsByCategoryLocationLimitAsync(string productCategory, string skip, string limit, string currency)
+        {
+            return await _restClient.GetProductsByCategoryLocationLimit(productCategory, skip, limit, currency);
+        }
+
         // POST
 
         public async Task<Product> PostProductAsync(ProductPost product, ByteArrayPart bytes)
         {
-            return await _restClient.AddProduct(product.Name, product.Price, product.SalePrice, product.Url, product.Category, product.Description, bytes);
+            return await _restClient.AddProduct(product.Name, product.Price, product.SalePrice, product.Url, product.Category, product.Description, product.CurrencySymbol, bytes);
         }
 
         // DELETE

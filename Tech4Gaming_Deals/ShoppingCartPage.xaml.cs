@@ -68,11 +68,14 @@ namespace Tech4Gaming_Deals
             var cell = sender as ViewCell;
             var product = cell.BindingContext as Product;
 
+            var lblPrice = cell.FindByName("lblProductPrice") as Label;
+            var lblSalePrice = cell.FindByName("lblProductSalePrice") as Label;
+
+            lblPrice.Text = product.Price.ToString() + product.currencySymbol;
+            lblSalePrice.Text = product.SalePrice.ToString() + product.currencySymbol;
+
             if (product.SalePrice <= 0)
             {
-                var lblPrice = cell.FindByName("lblProductPrice") as Label;
-                var lblSalePrice = cell.FindByName("lblProductSalePrice") as Label;
-
                 lblSalePrice.IsVisible = false;
                 lblPrice.FontSize = lblSalePrice.FontSize;
                 lblPrice.TextDecorations = TextDecorations.None;

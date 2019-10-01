@@ -23,7 +23,7 @@ namespace Tech4Gaming_Deals
             _app = Application.Current as App;
             _app.ProductPage = (this);
 
-            //if (_app.SelectedLocations.Count == 0)
+            if (_app.SelectedLocations.Count == 0)
                 Navigation.PushModalAsync(new SelectRegionPage());
 
             if (IsInternetMissing())
@@ -88,17 +88,30 @@ namespace Tech4Gaming_Deals
             if (cell == null || product == null)
                 return;
 
+            var lblPrice = cell.FindByName("lblProductPrice") as Label;
+            var lblSalePrice = cell.FindByName("lblProductSalePrice") as Label;
+
+            lblPrice.Text = product.Price.ToString() + product.currencySymbol;
+            lblSalePrice.Text = product.SalePrice.ToString() + product.currencySymbol;
             if (product.SalePrice <= 0)
             {
-                var lblPrice = cell.FindByName("lblProductPrice") as Label;
-                var lblSalePrice = cell.FindByName("lblProductSalePrice") as Label;
-
+                // No sale price
                 lblSalePrice.IsVisible = false;
                 lblPrice.FontSize = lblSalePrice.FontSize;
                 lblPrice.TextDecorations = TextDecorations.None;
                 lblPrice.TextColor = (Color)Application.Current.Resources["colorRed"];
             }
-            // TODO: Do the reverse
+            else
+            {
+                // With sale price
+                lblSalePrice.IsVisible = true;
+                lblPrice.FontSize = lblSalePrice.FontSize - 4;
+                lblPrice.TextDecorations = TextDecorations.Strikethrough;
+                lblPrice.TextColor = (Color)Application.Current.Resources["colorSecondaryText"];
+            }
+            // TODO: Fix decoration 
+            if (lblPrice.TextColor == (Color)Application.Current.Resources["colorRed"])
+                lblPrice.TextDecorations = TextDecorations.None;
         }
 
         #endregion

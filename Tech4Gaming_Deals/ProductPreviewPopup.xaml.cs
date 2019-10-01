@@ -38,8 +38,8 @@ namespace Tech4Gaming_Deals
             imgProductDetail.Source = ImageSource.FromStream(() => new MemoryStream(productImage));
 
             // Price
-            lblPriceDetail.Text = $"{NewProduct.Price.ToString()}€";
-            lblSalePriceDetail.Text = $"{NewProduct.SalePrice.ToString()}€";
+            lblPriceDetail.Text = $"{NewProduct.Price.ToString()}{NewProduct.CurrencySymbol}";
+            lblSalePriceDetail.Text = $"{NewProduct.SalePrice.ToString()}{NewProduct.CurrencySymbol}";
             if (NewProduct.SalePrice > 0)
             {
                 lblSalePriceDetail.IsVisible = true;
@@ -92,7 +92,7 @@ namespace Tech4Gaming_Deals
             if(!String.IsNullOrEmpty(entrySalePrice.Text))
                 NewProduct.SalePrice = float.Parse(Regex.Replace(entrySalePrice.Text, "€", ""));
             if (!String.IsNullOrEmpty(entryPrice.Text))
-                NewProduct.Price = float.Parse(Regex.Replace(entryPrice.Text, "€", ""));
+                NewProduct.Price = float.Parse(Regex.Replace(entryPrice.Text, "[€$£]", ""));
         }
 
         private void SetEntriesValue()

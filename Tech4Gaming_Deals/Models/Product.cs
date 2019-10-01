@@ -20,5 +20,6 @@ namespace Tech4Gaming_Deals.Models
         public string Url { get; set; }
         public string productImage { get; set; }
         public string Description { get; set; }
+        public string currencySymbol { get; set; }
     }
 }

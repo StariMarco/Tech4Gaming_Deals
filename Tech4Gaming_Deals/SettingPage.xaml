@@ -16,6 +16,26 @@
                                 On="True"
                                 OnChanged="OnNotificationSwitched"
                                 OnColor="{x:StaticResource Key=colorAccent}"/>
+                    <ViewCell Tapped="OnSetLocations">
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="15, 5">
+                            <Label Text="Locations"
+                                   VerticalOptions="Center">
+                                <Label.TextColor>
+                                    <OnPlatform x:TypeArguments="Color">
+                                        <On Platform="Android" Value="{x:StaticResource Key=colorSecondaryText}"/>
+                                        <On Platform="iOS" Value="Black"/>
+                                    </OnPlatform>
+                                </Label.TextColor>
+                            </Label>
+                            <Label Text=">"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="EndAndExpand"
+                                   TextColor="{x:StaticResource Key=colorSecondaryText}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+                <TableSection>
                     <ViewCell Tapped="OpenEmailEditor">
                         <StackLayout Orientation="Horizontal"
                                      Padding="15, 5">
