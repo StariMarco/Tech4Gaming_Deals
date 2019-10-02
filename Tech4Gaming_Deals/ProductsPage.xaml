@@ -115,14 +115,12 @@
                                                                  Spacing="5"
                                                                  HorizontalOptions="FillAndExpand"
                                                                  VerticalOptions="FillAndExpand">
-                                                        <Label Text="{Binding SalePrice, StringFormat='{0:F2}'}"
-                                                               x:Name="lblProductSalePrice"
-                                                               Style="{DynamicResource Key=fntszNormal}"
-                                                               TextColor="{x:StaticResource colorRed}"/>
-                                                        <Label Text="{Binding Price, StringFormat='{0:F2}'}"
-                                                               x:Name="lblProductPrice"
-                                                               Style="{DynamicResource Key=fntszSmall}"
-                                                               TextColor="{x:StaticResource colorPrimaryText}"/>
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label x:Name="lblProductSalePrice" HorizontalOptions="Start"
+                                                                   Text="{Binding SalePriceText}"/>
+                                                            <Label x:Name="lblProductPrice" HorizontalOptions="Start"
+                                                                   Text="{Binding PriceText}"/>
+                                                        </StackLayout>
                                                         <Label Text="{Binding Date}"
                                                                Style="{DynamicResource Key=fntszSmall}"
                                                                TextColor="{x:StaticResource Key=colorSecondaryText}"

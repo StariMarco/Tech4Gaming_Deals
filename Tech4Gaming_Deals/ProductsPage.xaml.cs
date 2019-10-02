@@ -15,6 +15,7 @@ namespace Tech4Gaming_Deals
     {
         public ObservableCollection<Product> ProductList;
         private App _app;
+        private int normalFontSize, smallFontSize;
 
         public ProductsPage()
         {
@@ -90,28 +91,39 @@ namespace Tech4Gaming_Deals
 
             var lblPrice = cell.FindByName("lblProductPrice") as Label;
             var lblSalePrice = cell.FindByName("lblProductSalePrice") as Label;
+            UpdateCell(product, lblPrice, lblSalePrice);
 
-            lblPrice.Text = product.Price.ToString() + product.currencySymbol;
-            lblSalePrice.Text = product.SalePrice.ToString() + product.currencySymbol;
-            if (product.SalePrice <= 0)
+            lblPrice.TextDecorations = TextDecorations.None;
+
+            if (lblSalePrice.IsVisible && Device.RuntimePlatform == Device.Android)
             {
-                // No sale price
-                lblSalePrice.IsVisible = false;
-                lblPrice.FontSize = lblSalePrice.FontSize;
-                lblPrice.TextDecorations = TextDecorations.None;
-                lblPrice.TextColor = (Color)Application.Current.Resources["colorRed"];
+                lblSalePrice.IsVisible = true;
+                lblPrice.TextDecorations = TextDecorations.Strikethrough;
+            }
+        }
+
+        private void UpdateCell(Product product, Label lblPrice, Label lblSalePrice)
+        {
+            if (product.SalePrice > 0)
+            {
+                // sale price
+                lblSalePrice.IsVisible = true;
+                lblSalePrice.TextColor = (Color)Application.Current.Resources["colorRed"];
+                lblSalePrice.FontSize = normalFontSize;
+
+                lblPrice.TextColor = (Color)Application.Current.Resources["colorSecondaryText"];
+                lblPrice.FontSize = smallFontSize;
+
+                if (String.IsNullOrWhiteSpace(lblSalePrice.Text))
+                    lblSalePrice.Text = product.SalePriceText;
             }
             else
             {
-                // With sale price
-                lblSalePrice.IsVisible = true;
-                lblPrice.FontSize = lblSalePrice.FontSize - 4;
-                lblPrice.TextDecorations = TextDecorations.Strikethrough;
-                lblPrice.TextColor = (Color)Application.Current.Resources["colorSecondaryText"];
+                // no sale price
+                lblSalePrice.IsVisible = false;
+                lblPrice.TextColor = (Color)Application.Current.Resources["colorRed"];
+                lblPrice.FontSize = normalFontSize;
             }
-            // TODO: Fix decoration 
-            if (lblPrice.TextColor == (Color)Application.Current.Resources["colorRed"])
-                lblPrice.TextDecorations = TextDecorations.None;
         }
 
         #endregion
@@ -123,25 +135,26 @@ namespace Tech4Gaming_Deals
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
 
             var displayWidth = mainDisplayInfo.Width;
-            int normalFontSize, smallFontSize;
 
             if (Device.RuntimePlatform == Device.Android)
             {
-                normalFontSize = 12;
-                smallFontSize = 8;
+                this.normalFontSize = 12;
+                this.smallFontSize = 9;
 
                 AdaptAndroidImageSize(displayWidth);
             }
             else
             {
-                normalFontSize = 14;
-                smallFontSize = 10;
+                this.normalFontSize = 14;
+                this.smallFontSize = 11;
             }
-
-            AdaptFontSize(displayWidth, normalFontSize, smallFontSize);
+            Application.Current.Resources["smallFontSize"] = (double)smallFontSize;
+            Application.Current.Resources["normalFontSize"] = (double)normalFontSize;
+            
+            AdaptFontSize(displayWidth);
         }
 
-        private void AdaptFontSize(double displayWidth, int normalFontSize, int smallFontSize)
+        private void AdaptFontSize(double displayWidth)
         {
             if (displayWidth < 1000)
             {
@@ -154,7 +167,7 @@ namespace Tech4Gaming_Deals
                         new Setter
                         {
                             Property = Label.FontSizeProperty,
-                            Value = normalFontSize
+                            Value = this.normalFontSize
                         }
                     }
                 };
@@ -166,7 +179,7 @@ namespace Tech4Gaming_Deals
                         new Setter
                         {
                             Property = Label.FontSizeProperty,
-                            Value = smallFontSize
+                            Value = this.smallFontSize
                         }
                     }
                 };

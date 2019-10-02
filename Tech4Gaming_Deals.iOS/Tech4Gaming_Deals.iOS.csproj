@@ -152,10 +152,10 @@
       <Version>1.0.16</Version>
     </PackageReference>
     <PackageReference Include="MongoDB.Bson">
-      <Version>2.9.1</Version>
+      <Version>2.9.2</Version>
     </PackageReference>
     <PackageReference Include="MongoDB.Driver">
-      <Version>2.9.1</Version>
+      <Version>2.9.2</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Forms.Svg">
       <Version>1.0.0.27</Version>

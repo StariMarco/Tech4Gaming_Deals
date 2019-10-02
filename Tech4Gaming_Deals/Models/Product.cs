@@ -21,5 +21,20 @@ namespace Tech4Gaming_Deals.Models
         public string productImage { get; set; }
         public string Description { get; set; }
         public string currencySymbol { get; set; }
+
+        public string PriceText
+        {
+            get
+            {
+                return string.Format("{0:0.00}{1}", Price, currencySymbol);
+            }
+        }
+        public string SalePriceText
+        {
+            get
+            {
+                return (SalePrice <= 0) ? "" : string.Format("{0:0.00}{1}", SalePrice, currencySymbol);
+            }
+        }
     }
 }

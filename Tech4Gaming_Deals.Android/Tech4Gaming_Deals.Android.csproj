@@ -87,10 +87,10 @@
       <Version>1.0.16</Version>
     </PackageReference>
     <PackageReference Include="MongoDB.Bson">
-      <Version>2.9.1</Version>
+      <Version>2.9.2</Version>
     </PackageReference>
     <PackageReference Include="MongoDB.Driver">
-      <Version>2.9.1</Version>
+      <Version>2.9.2</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Forms.Svg">
       <Version>1.0.0.27</Version>
@@ -106,6 +106,7 @@
     <Compile Include="PhotoPickerService.cs" />
     <Compile Include="CustomRenderers\RoundedEntryDroid.cs" />
     <Compile Include="CustomRenderers\CustomImageButtonDroid.cs" />
+    <Compile Include="CustomRenderers\ProductViewCellDroid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

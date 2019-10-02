@@ -33,7 +33,7 @@ namespace Tech4Gaming_Deals.Managers
                 Product[] tmpProducts;
                 if (category.IsSelected)
                 {
-                    tmpProducts = await restService.GetProductsByCategoryLimitAsync(category.Name, category.Skip.ToString(), "5");
+                    tmpProducts = await restService.GetProductsByCategoryLimitAsync(category.Name, category.Skip.ToString(), "1");
                     category.Skip += tmpProducts.Length;
                     if(tmpProducts != null)
                         products.AddRange(tmpProducts);
@@ -55,7 +55,7 @@ namespace Tech4Gaming_Deals.Managers
                 Product[] tmpProducts;
                 if (category.IsSelected)
                 {
-                    tmpProducts = await restService.GetProductsByCategoryLocationLimitAsync(category.Name, category.Skip.ToString(), "5", currencyString);
+                    tmpProducts = await restService.GetProductsByCategoryLocationLimitAsync(category.Name, category.Skip.ToString(), "1", currencyString);
                     category.Skip += tmpProducts.Length;
                     if (tmpProducts != null)
                         products.AddRange(tmpProducts);
