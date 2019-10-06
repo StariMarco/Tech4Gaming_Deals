@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
+using Tech4Gaming_Deals.Managers;
 
 namespace Tech4Gaming_Deals
 {
@@ -242,6 +243,11 @@ namespace Tech4Gaming_Deals
         public void UpdateProductListItemSource()
         {
             lstProducts.ItemsSource = _app.Products;
+
+            if (_app.Products.Count == 0)
+                lblProductNotFound.IsVisible = true;
+            else
+                lblProductNotFound.IsVisible = false;
         }
 
         private void OnViewMoreProductsClicked(object sender, EventArgs e)
@@ -252,6 +258,13 @@ namespace Tech4Gaming_Deals
             btnViewMore.IsVisible = false;
             activityIndicator.IsVisible = true;
             InitializeProducts();
+        }
+
+        private async void OnSearchByPartialName(object sender, EventArgs e)
+        {
+            await _app.FilterProductsByPartialNameAsync(entrySearchProduct.Text);
+
+            UpdateProductListItemSource();
         }
 
         #endregion

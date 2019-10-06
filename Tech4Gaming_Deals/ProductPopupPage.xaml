@@ -2,7 +2,8 @@
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  x:Class="Tech4Gaming_Deals.ProductPopupPage"
-                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
 
     <StackLayout HorizontalOptions="Center"
                  VerticalOptions="Center"
@@ -13,38 +14,38 @@
                    Padding="0"
                    CornerRadius="10">
                 <StackLayout Margin="0">
-                            <Label x:Name="lblName"
-                                    Style="{DynamicResource Key=fntszNormal}"
-                                    TextColor="{x:StaticResource Key=colorPrimaryText}"
-                                    FontAttributes="Bold"
-                                   Margin="10, 10, 10, 5"/>
+                    <Label x:Name="lblName"
+                            Style="{DynamicResource Key=fntszNormal}"
+                            TextColor="{x:StaticResource Key=colorPrimaryText}"
+                            FontAttributes="Bold"
+                            Margin="10, 10, 10, 5"/>
                             
-                            <Image BackgroundColor="Transparent"
-                                   HorizontalOptions="CenterAndExpand"
-                                   Aspect="AspectFit"
-                                   x:Name="imgProduct"
-                                   HeightRequest="200"/>
-                            <StackLayout Padding="10">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label x:Name="lblSalePrice"
-                                           Style="{DynamicResource Key=fntszNormal}"
-                                           TextColor="{x:StaticResource Key=colorRed}"
-                                           IsVisible="false"/>
-                                    <Label x:Name="lblPrice"
-                                           Style="{DynamicResource Key=fntszNormal}"
-                                           TextColor="{x:StaticResource Key=colorRed}"/>
-                                </StackLayout>
-                                <StackLayout>
-                                    <Label Text="Description"
-                                            x:Name="lblDescText"
-                                            FontAttributes="Bold"
-                                            Style="{DynamicResource Key=fntszNormal}"
-                                            TextColor="{x:StaticResource Key=colorPrimaryText}"/>
-                                    <ScrollView>
-                                        <Label x:Name="lblDescription"/>
-                                    </ScrollView>
-                                </StackLayout>
-                            </StackLayout>
+                    <Image BackgroundColor="Transparent"
+                            HorizontalOptions="CenterAndExpand"
+                            Aspect="AspectFit"
+                            x:Name="imgProduct"
+                            HeightRequest="200"/>
+                    <StackLayout Padding="10">
+                        <StackLayout Orientation="Horizontal">
+                            <Label x:Name="lblSalePrice"
+                                    Style="{DynamicResource Key=fntszNormal}"
+                                    TextColor="{x:StaticResource Key=colorRed}"
+                                    IsVisible="false"/>
+                            <Label x:Name="lblPrice"
+                                    Style="{DynamicResource Key=fntszNormal}"
+                                    TextColor="{x:StaticResource Key=colorRed}"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="Description"
+                                    x:Name="lblDescText"
+                                    FontAttributes="Bold"
+                                    Style="{DynamicResource Key=fntszNormal}"
+                                    TextColor="{x:StaticResource Key=colorPrimaryText}"/>
+                            <ScrollView>
+                                <Label x:Name="lblDescription"/>
+                            </ScrollView>
+                        </StackLayout>
+                    </StackLayout>
                     <Grid Padding="10, 5"
                           ColumnSpacing="10"
                           Margin="0, 5, 0, 5">
@@ -53,6 +54,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
                             <RowDefinition Height="40"/>
                         </Grid.RowDefinitions>
 
@@ -63,6 +65,7 @@
                                 BorderColor="{x:StaticResource Key=colorPrimary}"
                                 BorderWidth="1"
                                 Grid.Column="0"
+                                Grid.Row="0"
                                 Clicked="OnOpenProductLink"/>
                         <Button Text="Add to cart"
                                 CornerRadius="10"
@@ -71,7 +74,33 @@
                                 BorderColor="{x:StaticResource Key=colorPrimary}"
                                 BorderWidth="1"
                                 Grid.Column="1"
+                                Grid.Row="0"
                                 Clicked="OnAddToShoppingCart"/>
+                        <Button Text="Delete"
+                                CornerRadius="10"
+                                TextColor="{x:StaticResource Key=colorRed}"
+                                BorderColor="{x:StaticResource Key=colorRed}"
+                                BorderWidth="1"
+                                BackgroundColor="Transparent"
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                Clicked="OnDeleteProduct"/>
+                        <StackLayout Orientation="Horizontal"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="StartAndExpand"
+                                     Grid.Column="1"
+                                     Grid.Row="1">
+                            <Label Text="Delete product from database"
+                                   TextColor="{x:StaticResource Key=colorRed}"
+                                   FontSize="14"
+                                   VerticalOptions="Center"/>
+                            <ffimageloadingsvg:SvgCachedImage WidthRequest="35"
+                                                              HeightRequest="35"
+                                                              BackgroundColor="Transparent"
+                                                              Source="resource://Tech4Gaming_Deals.Images.Risk_Icon.svg"
+                                                              x:Name="svgAmerica"
+                                                              InputTransparent="True"/>
+                        </StackLayout>
                     </Grid>
                 </StackLayout>
             </Frame>

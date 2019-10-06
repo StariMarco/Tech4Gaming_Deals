@@ -21,6 +21,9 @@ namespace Tech4Gaming_Deals.Interfaces
         [Get("/api/products/category/{name}")]
         Task<Product[]> GetProductsByCategory(string name);
 
+        [Get("/api/products/category/search/{category}/{name}")]
+        Task<Product[]> GetProductsByPartialName(string category, string name);
+
         [Get("/api/products/category/{name}/{skip}/{limit}")]
         Task<Product[]> GetProductsByCategoryLimit(string name, string skip, string limit);
 
@@ -36,6 +39,6 @@ namespace Tech4Gaming_Deals.Interfaces
         // DELETE
 
         [Delete("/api/products/{id}")]
-        Task DeleteProductById(string id);
+        Task<Product> DeleteProductById(string id);
     }
 }

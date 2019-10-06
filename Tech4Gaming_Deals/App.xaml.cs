@@ -100,6 +100,18 @@ namespace Tech4Gaming_Deals
                 ProductPage.UpdateProductListItemSource();
         }
 
+        // Search by name
+
+        public async Task FilterProductsByPartialNameAsync(string name)
+        {
+            List<Product> products = await OnlineDataManager.FilterProductsByPartialNameAsync(this.CategoryList, name);
+
+            // Order by Date
+            products = products.OrderByDescending(p => p.Date).ToList();
+
+            this.Products = new ObservableCollection<Product>(products);
+        }
+
         #endregion
 
         #region LocalData Management

@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.815419" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.848062" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
@@ -18,7 +18,7 @@
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="refit" Version="4.7.51" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
     <PackageReference Include="Json.Net" Version="1.0.16" />
     <PackageReference Include="MongoDB.Bson" Version="2.9.2" />
     <PackageReference Include="MongoDB.Driver" Version="2.9.2" />
@@ -42,6 +42,8 @@
     <None Remove="Images\America_Flag.svg" />
     <None Remove="Images\England_Flag.svg" />
     <None Remove="Images\Italy_Flag.svg" />
+    <None Remove="Images\Tech4Gaming_Banner.png" />
+    <None Remove="Images\Risk_Icon.svg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Android">
@@ -55,5 +57,7 @@
     <EmbeddedResource Include="Images\America_Flag.svg" />
     <EmbeddedResource Include="Images\England_Flag.svg" />
     <EmbeddedResource Include="Images\Italy_Flag.svg" />
+    <EmbeddedResource Include="Images\Tech4Gaming_Banner.png" />
+    <EmbeddedResource Include="Images\Risk_Icon.svg" />
   </ItemGroup>
 </Project>

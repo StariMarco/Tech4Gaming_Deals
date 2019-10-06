@@ -33,6 +33,11 @@ namespace Tech4Gaming_Deals.Models
             return await _restClient.GetProductsByCategory(productCategory);
         }
 
+        public async Task<Product[]> GetProductsByPartialNameAsync(string productCategory, string partialName)
+        {
+            return await _restClient.GetProductsByPartialName(productCategory, partialName);
+        }
+
         public async Task<Product[]> GetProductsByCategoryLimitAsync(string productCategory, string skip, string limit)
         {
             return await _restClient.GetProductsByCategoryLimit(productCategory, skip, limit);
@@ -52,9 +57,9 @@ namespace Tech4Gaming_Deals.Models
 
         // DELETE
 
-        public async Task DeleteProductByIdAsync(string productId)
+        public async Task<Product> DeleteProductByIdAsync(string productId)
         {
-            await _restClient.DeleteProductById(productId);
+            return await _restClient.DeleteProductById(productId);
         }
     }
 }

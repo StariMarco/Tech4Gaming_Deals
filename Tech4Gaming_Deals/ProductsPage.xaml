@@ -39,7 +39,8 @@
                                  Visual="Material"
                                  Margin="20, 10, 20, 10"
                                  IsVisible="false"
-                                 BackgroundColor="Transparent">
+                                 BackgroundColor="Transparent"
+                                 Completed="OnSearchByPartialName">
                <local1:RoundedEntry.HeightRequest>
                    <OnPlatform x:TypeArguments="x:Double">
                        <On Platform="Android" Value="30"/>
@@ -61,6 +62,19 @@
                 </Label.TextColor>
             </Label>
 
+            <Label Text="Product not found!"
+                   HorizontalOptions="Center"
+                   Margin="0, 5"
+                   IsVisible="false"
+                   x:Name="lblProductNotFound">
+                <Label.TextColor>
+                    <OnPlatform x:TypeArguments="Color">
+                        <On Platform="Android" Value="White"/>
+                        <On Platform="iOS" Value="{x:StaticResource Key=colorSecondaryText}"/>
+                    </OnPlatform>
+                </Label.TextColor>
+            </Label>
+
             <!--#region-->
             <StackLayout Margin="0, 5, 0, 0">
                 <ListView x:Name="lstProducts"
@@ -74,6 +88,7 @@
                           Refreshing="OnRefreshProducts"
                           ItemTapped="OnShowPopup"
                           BindingContext="{Binding .}">
+
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell BindingContextChanged="OnBindingContexChanged">

@@ -100,5 +100,32 @@ namespace Tech4Gaming_Deals
             var data = _app.GetLocalDataToSave();
             LocalDataManager.Save(data);
         }
+
+
+        private async void OnDeleteProduct(object sender, EventArgs e)
+        {
+            bool confirmation = await DisplayAlert("Confirm", "Do you want to delete this product?", "Yes", "No");
+
+            if (!confirmation) return;
+
+            Product result = null;
+            try
+            {
+                result = await OnlineDataManager.DeleteProductAsync(SelectedProduct._id);
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", "There was an error deleting the product", "Ok");
+                return;
+            }
+
+            if (result == null) return;
+
+            await DisplayAlert("Done", "Product deleted successfully", "Ok");
+
+            await PopupNavigation.Instance.PopAsync(true);
+
+            await _app.FilterProductsAsync(true);
+        }
     }
 }

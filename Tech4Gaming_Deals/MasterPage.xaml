@@ -25,6 +25,10 @@
                          VerticalOptions="Start"
                          HorizontalOptions="CenterAndExpand"
                          HeightRequest="10"/>
+
+                <Image x:Name="imgBanner"
+                       Margin="-20, -10, 0, 0"/>
+
                 <!--Navigation-->
                 <ListView x:Name="lstNavigation"
                           SeparatorVisibility="None" 
@@ -55,16 +59,6 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <!--#region Filters-->
-                <!--<Label Text="Filters"
-                        TextColor="{x:StaticResource Key=colorPrimary}"
-                        FontSize="25"
-                        FontAttributes="Bold"
-                        HorizontalOptions="StartAndExpand"
-                        VerticalOptions="Start"
-                        Margin="0, 5, 0, 0"/>-->
-
-                <!--Categories-->
                 <StackLayout Margin="0, 0, 10, 0">
                     <Label Text="Categories"
                             TextColor="{x:StaticResource Key=colorPrimary}"

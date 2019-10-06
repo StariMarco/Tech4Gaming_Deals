@@ -108,6 +108,26 @@ namespace Tech4Gaming_Deals.Managers
             return products;
         }
 
+        public static async Task<List<Product>> FilterProductsByPartialNameAsync(ObservableCollection<ProductCategory> categoryList, string partialName)
+        {
+            var restService = new Tech4GamingApi();
+            List<Product> products = new List<Product>();
+
+            // Get products
+            foreach (var category in categoryList)
+            {
+                Product[] tmpProducts;
+                if (category.IsSelected)
+                {
+                    tmpProducts = await restService.GetProductsByPartialNameAsync(category.Name, partialName);
+                    products.AddRange(tmpProducts);
+                }
+
+            }
+
+            return products;
+        }
+
         #endregion
 
         #region POST
@@ -116,6 +136,16 @@ namespace Tech4Gaming_Deals.Managers
         {
             var restService = new Tech4GamingApi();
             return await restService.PostProductAsync(product, bytes);
+        }
+
+        #endregion
+
+        #region DELETE
+
+        public static async Task<Product> DeleteProductAsync(string productId)
+        {
+            var restService = new Tech4GamingApi();
+            return await restService.DeleteProductByIdAsync(productId);
         }
 
         #endregion

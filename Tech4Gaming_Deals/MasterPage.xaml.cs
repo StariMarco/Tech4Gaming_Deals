@@ -23,6 +23,8 @@ namespace Tech4Gaming_Deals
 
             _app = Application.Current as App;
 
+            imgBanner.Source = ImageSource.FromResource("Tech4Gaming_Deals.Images.Tech4Gaming_Banner.png");
+
             InitializeMenuItemsList();
 
             lstCategories.ItemsSource = _app.CategoryList;
