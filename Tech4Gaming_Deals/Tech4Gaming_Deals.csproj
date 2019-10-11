@@ -44,6 +44,7 @@
     <None Remove="Images\Italy_Flag.svg" />
     <None Remove="Images\Tech4Gaming_Banner.png" />
     <None Remove="Images\Risk_Icon.svg" />
+    <None Remove="Images\Chronometer_Primary.svg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Android">
@@ -59,5 +60,6 @@
     <EmbeddedResource Include="Images\Italy_Flag.svg" />
     <EmbeddedResource Include="Images\Tech4Gaming_Banner.png" />
     <EmbeddedResource Include="Images\Risk_Icon.svg" />
+    <EmbeddedResource Include="Images\Chronometer_Primary.svg" />
   </ItemGroup>
 </Project>

@@ -33,7 +33,7 @@ namespace Tech4Gaming_Deals.Interfaces
         // POST
         [Multipart]
         [Post("/api/products")]
-        Task<Product> AddProduct([AliasAs("name")]string name, [AliasAs("price")]float price, [AliasAs("salePrice")]float salePrice, [AliasAs("url")]string url, [AliasAs("category")]string category, [AliasAs("description")]string descxription, [AliasAs("currencySymbol")]string location, [AliasAs("productImage")]ByteArrayPart bytes);
+        Task<Product> AddProduct([AliasAs("name")]string name, [AliasAs("price")]float price, [AliasAs("salePrice")]float salePrice, [AliasAs("url")]string url, [AliasAs("category")]string category, [AliasAs("description")]string descxription, [AliasAs("currencySymbol")]string location, [AliasAs("expireAt")]string expireAt, [AliasAs("productImage")]ByteArrayPart bytes);
         //Task<Product> AddProduct(ProductPost product, [AliasAs("productImage")]IEnumerable<StreamPart> streams);
 
         // DELETE

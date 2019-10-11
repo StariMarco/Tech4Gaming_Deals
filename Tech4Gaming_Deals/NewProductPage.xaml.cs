@@ -17,6 +17,7 @@ namespace Tech4Gaming_Deals
     {
         private ProductPost _newProduct;
         private byte[] _imageByteArray;
+        private DateTime _defaultDate;
 
         public NewProductPage()
         {
@@ -25,6 +26,10 @@ namespace Tech4Gaming_Deals
             NavigationPage.SetHasNavigationBar(this, false);
 
             _newProduct = new ProductPost();
+
+            _defaultDate = DateTime.Now;
+            _newProduct.ExpireAt = _defaultDate;
+            pkrExpireDate.MinimumDate = _defaultDate;
         }
 
         private bool IsNewProductReady()
@@ -34,6 +39,7 @@ namespace Tech4Gaming_Deals
                      String.IsNullOrWhiteSpace(txtProductPrice.Text) ||
                      _newProduct.Category == null ||
                      _newProduct.CurrencySymbol == null ||
+                     _newProduct.ExpireAt.Equals(_defaultDate) ||
                      productImage.Source == null);
         }
 
@@ -98,6 +104,19 @@ namespace Tech4Gaming_Deals
 
         private void TextChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            CheckProductCompletition();
+        }
+
+        private void OnDateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _newProduct.ExpireAt = pkrExpireDate.Date + pkrExpireTime.Time;
+            }
+            catch (Exception ex)
+            {
+
+            }
             CheckProductCompletition();
         }
 

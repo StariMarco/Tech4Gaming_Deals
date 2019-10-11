@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Tech4Gaming_Deals.MarkupExtensions"
              xmlns:local1="clr-namespace:Tech4Gaming_Deals.CustomControls"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              mc:Ignorable="d"
              x:Class="Tech4Gaming_Deals.ProductsPage"
              Title="Products"
@@ -136,12 +137,18 @@
                                                             <Label x:Name="lblProductPrice" HorizontalOptions="Start"
                                                                    Text="{Binding PriceText}"/>
                                                         </StackLayout>
-                                                        <Label Text="{Binding Date}"
-                                                               Style="{DynamicResource Key=fntszSmall}"
-                                                               TextColor="{x:StaticResource Key=colorSecondaryText}"
-                                                               VerticalOptions="End"
-                                                               HorizontalOptions="EndAndExpand"
-                                                               Margin="20, 0, 0, 0"/>
+                                                        <StackLayout Orientation="Horizontal"
+                                                                     VerticalOptions="End"
+                                                                     HorizontalOptions="EndAndExpand"
+                                                                     Margin="20, 0, 0, 0">
+                                                            <ffimageloadingsvg:SvgCachedImage WidthRequest="12"
+                                                                                              HeightRequest="12"
+                                                                                              Source="resource://Tech4Gaming_Deals.Images.Chronometer_Primary.svg"
+                                                                                              InputTransparent="True"/>
+                                                            <Label Text="{Binding ExpireTime}"
+                                                                   Style="{DynamicResource Key=fntszSmall}"
+                                                                   TextColor="{x:StaticResource Key=colorPrimary}"/>
+                                                        </StackLayout>
                                                     </StackLayout>
                                                 </StackLayout>
                                             </AbsoluteLayout>

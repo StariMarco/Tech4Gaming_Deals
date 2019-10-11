@@ -15,5 +15,6 @@ namespace Tech4Gaming_Deals.Models
         public string Url { get; set; }
         public string Description { get; set; }
         public string CurrencySymbol { get; set; }
+        public DateTime ExpireAt { get; set; }
     }
 }

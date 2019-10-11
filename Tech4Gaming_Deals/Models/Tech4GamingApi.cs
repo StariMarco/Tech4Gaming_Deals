@@ -52,7 +52,7 @@ namespace Tech4Gaming_Deals.Models
 
         public async Task<Product> PostProductAsync(ProductPost product, ByteArrayPart bytes)
         {
-            return await _restClient.AddProduct(product.Name, product.Price, product.SalePrice, product.Url, product.Category, product.Description, product.CurrencySymbol, bytes);
+            return await _restClient.AddProduct(product.Name, product.Price, product.SalePrice, product.Url, product.Category, product.Description, product.CurrencySymbol, product.ExpireAt.ToString(), bytes);
         }
 
         // DELETE

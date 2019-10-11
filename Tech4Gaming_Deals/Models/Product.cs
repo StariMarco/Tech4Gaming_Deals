@@ -21,6 +21,7 @@ namespace Tech4Gaming_Deals.Models
         public string productImage { get; set; }
         public string Description { get; set; }
         public string currencySymbol { get; set; }
+        public DateTime ExpireAt { get; set; }
 
         public string PriceText
         {
@@ -34,6 +35,15 @@ namespace Tech4Gaming_Deals.Models
             get
             {
                 return (SalePrice <= 0) ? "" : string.Format("{0:0.00}{1}", SalePrice, currencySymbol);
+            }
+        }
+
+        public string ExpireTime
+        {
+            get
+            {
+                var time = ExpireAt.Subtract(DateTime.Now);
+                return String.Format("Expires in {0}d {1}h", time.Days, time.Minutes);
             }
         }
     }
