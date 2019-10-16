@@ -151,12 +151,20 @@ namespace Tech4Gaming_Deals
 
             try
             {
+                frmLoading.IsVisible = true;
+                formLayout.InputTransparent = true;
+                LoadingAnimation();
                 result = await OnlineDataManager.PostProductAsync(_newProduct, new ByteArrayPart(_imageByteArray, "name"));
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error Posting image:\n" + ex.Message);
             }
+            formLayout.InputTransparent = false;
+            frmLoading.IsVisible = false;
+
+
 
             // Check if the upload failed
             if (result == null)
@@ -237,5 +245,19 @@ namespace Tech4Gaming_Deals
         }
 
         #endregion
+
+        private async void LoadingAnimation()
+        {
+            while (lblUploadingText.IsVisible)
+            {
+                lblUploadingText.Text += ".";
+                await Task.Delay(1000);
+                lblUploadingText.Text += ".";
+                await Task.Delay(1000);
+                lblUploadingText.Text += ".";
+                await Task.Delay(1000);
+                lblUploadingText.Text = "Uploading product";
+            }
+        }
     }
 }

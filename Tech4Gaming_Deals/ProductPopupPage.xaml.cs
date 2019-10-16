@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Tech4Gaming_Deals.Managers;
@@ -111,6 +112,9 @@ namespace Tech4Gaming_Deals
             Product result = null;
             try
             {
+                btnDelete.Text = "Deleting";
+                PopupLayout.InputTransparent = true;
+                DeletingTextAnimation();
                 result = await OnlineDataManager.DeleteProductAsync(SelectedProduct._id);
             }
             catch (Exception ex)
@@ -118,6 +122,7 @@ namespace Tech4Gaming_Deals
                 await DisplayAlert("Error", "There was an error deleting the product", "Ok");
                 return;
             }
+            PopupLayout.InputTransparent = false;
 
             if (result == null) return;
 
@@ -126,6 +131,20 @@ namespace Tech4Gaming_Deals
             await PopupNavigation.Instance.PopAsync(true);
 
             await _app.FilterProductsAsync(true);
+        }
+
+        private async void DeletingTextAnimation()
+        {
+            while (PopupLayout.InputTransparent)
+            {
+                btnDelete.Text += ".";
+                await Task.Delay(1000);
+                btnDelete.Text += ".";
+                await Task.Delay(1000);
+                btnDelete.Text += ".";
+                await Task.Delay(1000);
+                btnDelete.Text = "Deleting";
+            }
         }
     }
 }

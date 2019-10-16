@@ -31,7 +31,9 @@ namespace Tech4Gaming_Deals.iOS
 
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 
-            UINavigationBar.Appearance.TintColor = Color.FromHex("#009688").ToUIColor();
+            UINavigationBar.Appearance.TintColor = Color.FromHex("#ffffff").ToUIColor();
+            UINavigationBar.Appearance.BarTintColor = Color.FromHex("#009688").ToUIColor();
+            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = UIColor.White });
 
             LoadApplication(new App());
 

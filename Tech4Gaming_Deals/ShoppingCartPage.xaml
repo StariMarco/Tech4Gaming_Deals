@@ -5,15 +5,16 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             BackgroundColor="{x:StaticResource Key=colorPrimary}"
              xmlns:local1="clr-namespace:Tech4Gaming_Deals.CustomControls"
-             Title="Shopping Cart">
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" Title="Shopping Cart">
 
-    <ContentPage.BackgroundColor>
+    <!--<ContentPage.BackgroundColor>
             <OnPlatform x:TypeArguments="Color">
                 <On Platform="Android" Value="{x:StaticResource Key=colorPrimary}"/>
                 <On Platform="iOS" Value="White"/>
             </OnPlatform>
-    </ContentPage.BackgroundColor>
+    </ContentPage.BackgroundColor>-->
 
     <AbsoluteLayout>
         <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
@@ -39,6 +40,7 @@
                           HorizontalOptions="Center"
                           SeparatorVisibility="None"
                           ItemSelected="DisableSelection"
+                          BackgroundColor="Transparent"
                           VerticalScrollBarVisibility="Never"
                           CachingStrategy="RecycleElementAndDataTemplate"
                           IsPullToRefreshEnabled="True"
@@ -91,12 +93,18 @@
                                                                    TextDecorations="Strikethrough"
                                                                    TextColor="{x:StaticResource colorPrimaryText}"/>
                                                         </StackLayout>
-                                                        <Label Text="{Binding Date}"
-                                                               Style="{DynamicResource Key=fntszSmall}"
-                                                               TextColor="{x:StaticResource Key=colorSecondaryText}"
-                                                               VerticalOptions="End"
-                                                               HorizontalOptions="EndAndExpand"
-                                                               Margin="20, 0, 0, 0"/>
+                                                        <StackLayout Orientation="Horizontal"
+                                                                     VerticalOptions="End"
+                                                                     HorizontalOptions="EndAndExpand"
+                                                                     Margin="20, 0, 0, 0">
+                                                            <ffimageloadingsvg:SvgCachedImage WidthRequest="12"
+                                                                                              HeightRequest="12"
+                                                                                              Source="resource://Tech4Gaming_Deals.Images.Chronometer_Primary.svg"
+                                                                                              InputTransparent="True"/>
+                                                            <Label Text="{Binding ExpireTime}"
+                                                                   Style="{DynamicResource Key=fntszSmall}"
+                                                                   TextColor="{x:StaticResource Key=colorPrimary}"/>
+                                                        </StackLayout>
                                                     </StackLayout>
                                                 </StackLayout>
                                             </AbsoluteLayout>

@@ -58,8 +58,6 @@ namespace Tech4Gaming_Deals
         {
             CategoryList.RemoveAt(index);
             CategoryList.Insert(index, category);
-
-            await FilterProductsAsync(refreshProductsList: true);
         }
 
         #region Tech4Gaming Api

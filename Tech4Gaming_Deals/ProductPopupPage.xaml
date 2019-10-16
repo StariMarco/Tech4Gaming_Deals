@@ -6,13 +6,13 @@
                  xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
 
     <StackLayout HorizontalOptions="Center"
-                 VerticalOptions="Center"
-                 x:Name="PopupLayout"
-                 Margin="20, 60">
+                    VerticalOptions="Center"
+                    x:Name="PopupLayout"
+                    Margin="20, 60">
 
             <Frame BackgroundColor="White"
-                   Padding="0"
-                   CornerRadius="10">
+                    Padding="0"
+                    CornerRadius="10">
                 <StackLayout Margin="0">
                     <Label x:Name="lblName"
                             Style="{DynamicResource Key=fntszNormal}"
@@ -47,8 +47,8 @@
                         </StackLayout>
                     </StackLayout>
                     <Grid Padding="10, 5"
-                          ColumnSpacing="10"
-                          Margin="0, 5, 0, 5">
+                            ColumnSpacing="10"
+                            Margin="0, 5, 0, 5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -77,6 +77,7 @@
                                 Grid.Row="0"
                                 Clicked="OnAddToShoppingCart"/>
                         <Button Text="Delete"
+                                x:Name="btnDelete"
                                 CornerRadius="10"
                                 TextColor="{x:StaticResource Key=colorRed}"
                                 BorderColor="{x:StaticResource Key=colorRed}"
@@ -86,24 +87,36 @@
                                 Grid.Row="1"
                                 Clicked="OnDeleteProduct"/>
                         <StackLayout Orientation="Horizontal"
-                                     VerticalOptions="Center"
-                                     HorizontalOptions="StartAndExpand"
-                                     Grid.Column="1"
-                                     Grid.Row="1">
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="StartAndExpand"
+                                        Grid.Column="1"
+                                        Grid.Row="1">
                             <Label Text="Delete product from database"
-                                   TextColor="{x:StaticResource Key=colorRed}"
-                                   FontSize="14"
-                                   VerticalOptions="Center"/>
+                                    TextColor="{x:StaticResource Key=colorRed}"
+                                    FontSize="14"
+                                    VerticalOptions="Center"/>
                             <ffimageloadingsvg:SvgCachedImage WidthRequest="35"
-                                                              HeightRequest="35"
-                                                              BackgroundColor="Transparent"
-                                                              Source="resource://Tech4Gaming_Deals.Images.Risk_Icon.svg"
-                                                              x:Name="svgAmerica"
-                                                              InputTransparent="True"/>
+                                                                HeightRequest="35"
+                                                                BackgroundColor="Transparent"
+                                                                Source="resource://Tech4Gaming_Deals.Images.Risk_Icon.svg"
+                                                                x:Name="svgAmerica"
+                                                                InputTransparent="True"/>
                         </StackLayout>
                     </Grid>
                 </StackLayout>
             </Frame>
     </StackLayout>
+    <!--<StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    InputTransparent="True">
+        <Frame HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                InputTransparent="True"
+                x:Name="frmDeletingProduct"
+                IsVisible="false">
+            <Label Text="Deleting product"
+                    x:Name="lblDeletingProduct"/>
+        </Frame>
+    </StackLayout>-->
 
 </pages:PopupPage>

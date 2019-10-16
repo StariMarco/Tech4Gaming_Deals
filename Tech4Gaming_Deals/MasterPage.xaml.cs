@@ -64,7 +64,6 @@ namespace Tech4Gaming_Deals
             SwitchCategoryState(category);
 
             await UpdateCategoryList(category, index);
-            SaveCategories();
         }
 
         private async void SelectAllCategories(object sender, EventArgs e)
@@ -81,7 +80,6 @@ namespace Tech4Gaming_Deals
 
                 await UpdateCategoryList(category, categoryIndex);
             }
-            SaveCategories();
         }
 
         private async void DeselectAllCategories(object sender, EventArgs e)
@@ -98,7 +96,6 @@ namespace Tech4Gaming_Deals
 
                 await UpdateCategoryList(category, categoryIndex);
             }
-            SaveCategories();
         }
 
         private async Task UpdateCategoryList(ProductCategory category, int categoryIndex)
@@ -121,6 +118,10 @@ namespace Tech4Gaming_Deals
                 category.Image = "ic_label.png";
 
             category.IsSelected = !category.IsSelected;
+
+            // Change apply button aspect
+            btnApply.BackgroundColor = (Color)Application.Current.Resources["colorPrimary"];
+            btnApply.TextColor = Color.White;
         }
 
         #endregion
@@ -144,6 +145,15 @@ namespace Tech4Gaming_Deals
         {
             var data = _app.GetLocalDataToSave();
             LocalDataManager.Save(data);
+        }
+
+        private async void OnApplyCategories(object sender, EventArgs e)
+        {
+            btnApply.BackgroundColor = Color.Transparent;
+            btnApply.TextColor = (Color)Application.Current.Resources["colorPrimary"];
+
+            await _app.FilterProductsAsync(true);
+            SaveCategories();
         }
     }
 }

@@ -9,14 +9,14 @@
              mc:Ignorable="d"
              x:Class="Tech4Gaming_Deals.ProductsPage"
              Title="Products"
-             BackgroundColor="White">
+             BackgroundColor="{x:StaticResource Key=colorPrimary}">
 
-    <ContentPage.BackgroundColor>
+    <!--<ContentPage.BackgroundColor>
             <OnPlatform x:TypeArguments="Color">
                 <On Platform="Android" Value="{x:StaticResource Key=colorPrimary}"/>
                 <On Platform="iOS" Value="White"/>
             </OnPlatform>
-    </ContentPage.BackgroundColor>
+    </ContentPage.BackgroundColor>-->
 
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="ic_add.png"
@@ -88,6 +88,7 @@
                           IsPullToRefreshEnabled="True"
                           Refreshing="OnRefreshProducts"
                           ItemTapped="OnShowPopup"
+                          BackgroundColor="Transparent"
                           BindingContext="{Binding .}">
 
                     <ListView.ItemTemplate>
