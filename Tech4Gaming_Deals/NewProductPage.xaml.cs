@@ -111,7 +111,8 @@ namespace Tech4Gaming_Deals
         {
             try
             {
-                _newProduct.ExpireAt = pkrExpireDate.Date + pkrExpireTime.Time;
+                _newProduct.ExpireAt = (pkrExpireDate.Date + pkrExpireTime.Time).ToUniversalTime();
+                Console.WriteLine("Local date: " + (pkrExpireDate.Date + pkrExpireTime.Time).ToUniversalTime().ToLocalTime());
             }
             catch (Exception ex)
             {
