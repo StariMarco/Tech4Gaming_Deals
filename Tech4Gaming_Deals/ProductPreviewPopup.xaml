@@ -53,7 +53,7 @@
                             <Label Text="12/12/12 00:00:00"
                                    x:Name="lblDate"
                                    Style="{DynamicResource Key=fntszSmall}"
-                                   TextColor="{x:StaticResource Key=colorSecondaryText}"
+                                   TextColor="{x:StaticResource Key=colorPrimary}"
                                    VerticalOptions="End"
                                    HorizontalOptions="EndAndExpand"
                                    Margin="20, 0, 0, 0"/>
@@ -75,10 +75,11 @@
                        FontAttributes="Bold"
                        Margin="10, 10, 10, 5"/>
                 <local:RoundedEntry Placeholder="Name"
-                       x:Name="entryName"
-                       IsVisible="false"
-                       TextColor="{x:StaticResource Key=colorPrimaryText}"
-                       Margin="10, 10, 10, 5"/>
+                                    x:Name="entryName"
+                                    Keyboard="Text"
+                                    IsVisible="false"
+                                    TextColor="{x:StaticResource Key=colorPrimaryText}"
+                                    Margin="10, 10, 10, 5"/>
                             
                 <Image BackgroundColor="Transparent"
                         HorizontalOptions="CenterAndExpand"
@@ -92,16 +93,18 @@
                                 TextColor="{x:StaticResource Key=colorRed}"
                                 IsVisible="false"/>
                         <local:RoundedEntry Placeholder="Sale Price"
-                               x:Name="entrySalePrice"
-                               TextColor="{x:StaticResource Key=colorPrimaryText}"
-                               IsVisible="false"/>
+                                           x:Name="entrySalePrice"
+                                           TextColor="{x:StaticResource Key=colorPrimaryText}"
+                                            Keyboard="Numeric"
+                                           IsVisible="false"/>
                         <Label x:Name="lblPriceDetail"
                                 Style="{DynamicResource Key=fntszNormal}"
                                 TextColor="{x:StaticResource Key=colorRed}"/>
                         <local:RoundedEntry Placeholder="Price"
-                               x:Name="entryPrice"
-                               TextColor="{x:StaticResource Key=colorPrimaryText}"
-                               IsVisible="false"/>
+                                           x:Name="entryPrice"
+                                            Keyboard="Numeric"
+                                           TextColor="{x:StaticResource Key=colorPrimaryText}"
+                                           IsVisible="false"/>
                     </StackLayout>
                     <StackLayout>
                         <Label Text="Description"

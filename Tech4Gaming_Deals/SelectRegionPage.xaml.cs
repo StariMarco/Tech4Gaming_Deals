@@ -7,6 +7,7 @@ using Tech4Gaming_Deals.Models;
 using Xamarin.Forms;
 using System.Xml.Linq;
 using Tech4Gaming_Deals.Managers;
+using System.Threading.Tasks;
 
 namespace Tech4Gaming_Deals
 {
@@ -88,6 +89,7 @@ namespace Tech4Gaming_Deals
         private void OnConfirm(object sender, EventArgs e)
         {
             LocalDataManager.Save((Application.Current as App).GetLocalDataToSave());
+            (Application.Current as App).RefilterProducts(true);
             Navigation.PopModalAsync();
         }
 

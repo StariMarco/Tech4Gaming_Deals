@@ -134,6 +134,7 @@
                             BackgroundColor="Transparent"
                             CornerRadius="10"
                             Clicked="OnApplyCategories"
+                            IsEnabled="False"
                             TextColor="{x:StaticResource Key=colorPrimary}"/>
                 </StackLayout>
                 <!--#endregion-->

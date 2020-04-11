@@ -110,6 +110,11 @@ namespace Tech4Gaming_Deals
             this.Products = new ObservableCollection<Product>(products);
         }
 
+        public async void RefilterProducts(bool refreshProductsList)
+        {
+            await FilterProductsAsync(refreshProductsList);
+        }
+
         #endregion
 
         #region LocalData Management

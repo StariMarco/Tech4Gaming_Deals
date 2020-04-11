@@ -29,7 +29,7 @@ namespace Tech4Gaming_Deals
         private void SetupProductFrame()
         {
             imgProduct.Source = ImageSource.FromStream(() => new MemoryStream(productImage));
-            lblDate.Text = DateTime.Now.ToString();
+            lblDate.Text = NewProduct.ExpireTime;
         }
 
         private void SetupProductDetailsFrame()
@@ -89,10 +89,27 @@ namespace Tech4Gaming_Deals
 
             NewProduct.SalePrice = 0;
             NewProduct.Price = 0;
-            if(!String.IsNullOrEmpty(entrySalePrice.Text))
-                NewProduct.SalePrice = float.Parse(Regex.Replace(entrySalePrice.Text, "€", ""));
-            if (!String.IsNullOrEmpty(entryPrice.Text))
-                NewProduct.Price = float.Parse(Regex.Replace(entryPrice.Text, "[€$£]", ""));
+
+            if(String.Equals(entrySalePrice.Text, "$", StringComparison.Ordinal) || String.Equals(entrySalePrice.Text, "€", StringComparison.Ordinal) || String.Equals(entrySalePrice.Text, "£", StringComparison.Ordinal))
+            {
+                entrySalePrice.Text = "0";
+            }
+            if (String.Equals(entryPrice.Text, "$", StringComparison.Ordinal) || String.Equals(entryPrice.Text, "€", StringComparison.Ordinal) || String.Equals(entryPrice.Text, "£", StringComparison.Ordinal))
+            {
+                entryPrice.Text = "0";
+            }
+
+            try
+            {
+                if(!String.IsNullOrEmpty(entrySalePrice.Text))
+                    NewProduct.SalePrice = float.Parse(Regex.Replace(entrySalePrice.Text, "[€$£]", ""));
+                if (!String.IsNullOrEmpty(entryPrice.Text))
+                    NewProduct.Price = float.Parse(Regex.Replace(entryPrice.Text, "[€$£]", ""));
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void SetEntriesValue()

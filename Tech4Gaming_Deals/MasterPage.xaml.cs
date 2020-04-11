@@ -120,6 +120,7 @@ namespace Tech4Gaming_Deals
             category.IsSelected = !category.IsSelected;
 
             // Change apply button aspect
+            btnApply.IsEnabled = true;
             btnApply.BackgroundColor = (Color)Application.Current.Resources["colorPrimary"];
             btnApply.TextColor = Color.White;
         }
@@ -149,10 +150,18 @@ namespace Tech4Gaming_Deals
 
         private async void OnApplyCategories(object sender, EventArgs e)
         {
+            btnApply.IsEnabled = false;
             btnApply.BackgroundColor = Color.Transparent;
             btnApply.TextColor = (Color)Application.Current.Resources["colorPrimary"];
 
-            await _app.FilterProductsAsync(true);
+            try
+            {
+                await _app.FilterProductsAsync(true);
+            }
+            catch (Exception ex)
+            {
+
+            }
             SaveCategories();
         }
     }
