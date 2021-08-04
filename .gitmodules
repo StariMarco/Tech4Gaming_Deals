@@ -1,0 +1,3 @@
+[submodule "Tech4Gaming_Backend"]
+	path = Tech4Gaming_Backend
+	url = https://github.com/StariMarco/Tech4Gaming_Backend.git
